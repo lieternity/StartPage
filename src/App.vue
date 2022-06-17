@@ -1,28 +1,28 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="mainBackground">
+    <img v-if="mainBackground.type === 'img'" :src="mainBackground.imgSrc" alt="backgroundPicture">
+    <video v-else :src="mainBackground.videoSrc" muted autoplay></video>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  name: "App",
+  data() {
+    return {
+      mainBackground: {
+        videoSrc: "",
+        imgSrc: "./assets/img/bg1.jpg",
+        type:"img"
+      }
+    }
+  },
+  beforeMount() {
+
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style scoped>
+
 </style>
