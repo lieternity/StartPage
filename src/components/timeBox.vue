@@ -1,5 +1,5 @@
 <template>
-  <div v-show="hour !== ''" class="clock">
+  <div class="clock">
     <div class="hours">
       <div class="first">
         <div class="number">{{ hour[0] }}</div>
@@ -8,7 +8,7 @@
         <div class="number">{{ hour[1] }}</div>
       </div>
     </div>
-    <div class="tick">:</div>
+    <div v-show="hour !== ' '" class="tick">:</div>
     <div class="minutes">
       <div class="first">
         <div class="number">{{ minute[0] }}</div>
@@ -17,7 +17,7 @@
         <div class="number">{{ minute[1] }}</div>
       </div>
     </div>
-    <div class="tick">:</div>
+    <div v-show="hour !== ' '" class="tick">:</div>
     <div class="seconds">
       <div class="first">
         <div class="number">{{ second[0] }}</div>
@@ -36,9 +36,9 @@ export default {
   name: "timeBox",
   data() {
     return {
-      hour: "",
-      minute: "",
-      second: ""
+      hour: " ",
+      minute: " ",
+      second: " "
     }
   },
   methods: {

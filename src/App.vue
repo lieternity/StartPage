@@ -1,32 +1,22 @@
 <template>
-  <div class="mian">
-    <BackGround/>
-    <time-box class="timebox"/>
-    <search-box/>
+  <div style="height: 100%">
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import BackGround from "@/components/BackGround";
-import TimeBox from "@/components/timeBox";
-import SearchBox from "@/components/searchBox";
 
 export default {
   name: "App",
-  components: {
-    SearchBox,
-    TimeBox,
-    BackGround
-  }
-
 }
 </script>
 
 <style>
-html{
+html {
   width: 100%;
   height: 100%;
 }
+
 body {
   max-width: 100%;
   height: 100%;
@@ -38,6 +28,7 @@ body {
   background-size: cover;
   background-position: center;
 }
+
 .icon {
   width: 1em;
   height: 1em;
@@ -45,7 +36,5 @@ body {
   fill: currentColor;
   overflow: hidden;
 }
-.mian{
-  height: 100%;
-}
+
 </style>

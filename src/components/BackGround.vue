@@ -13,8 +13,8 @@ export default {
     return {
       mainBackground: {
         videoSrc: "",
-        imgSrc: "./img/bg1.jpg",
-        // imgSrc: "https://cdn.seovx.com/?mom=302",
+        // imgSrc: "./img/bg1.jpg",
+        imgSrc: "https://img.bugjava.cn/mt.php",
         type: "img",
         DB:{}
       }

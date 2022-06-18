@@ -1,7 +1,8 @@
 <template>
   <div id="form">
-    <input @keydown.enter="startSearch" v-model="searchValue" type="text" aria-autocomplete="none" autocomplete="off">
-    <div class="iconbox" id="searchBtnList">
+    <input @keyup="giveSearchListValue(searchValue)" @click="changeSearchMenuShow(false)" @keydown.enter="startSearch"
+           v-model="searchValue" type="text" aria-autocomplete="none" autocomplete="off">
+    <div @click="changeSearchMenuShow" class="iconbox" id="searchBtnList">
       <svg class="icon iconsvg" aria-hidden="true">
         <use :xlink:href="iconList"></use>
       </svg>
@@ -21,41 +22,57 @@ export default {
   data() {
     return {
       searchValue: "",
-      iconList:"#icon-github",
       searchDefault: {
         type: "baidu",
         action: "https://www.baidu.com/s",
         name: "wd"
       },
-      search: [
-        {
-          type: "baidu",
-          action: "https://www.baidu.com/s",
-          name: "wd"
-        },
-        {
-          type: "bing",
-          action: "https://cn.bing.com/search",
-          name: "q"
-        },
-        {
-          type: "google",
-          action: "https://www.google.com/search",
-          name: "q"
-        },
-        {
-          type: "github",
-          action: "https://github.com/search",
-          name: "q"
-        },
 
-      ]
+    }
+  },
+  computed: {
+    iconList() {
+      return "#icon-" + this.searchDefault.type
     }
   },
   methods: {
     startSearch() {
-      window.open(this.searchDefault.action + "?" + this.searchDefault.name + "=" + this.searchValue)
+      top.location.href = this.searchDefault.action + "?" + this.searchDefault.name + "=" + this.searchValue
+    },
+    changeSearchMenuShow(value = "") {
+      this.$bus.$emit("searchMenuShowStatus", value)
+    },
+    giveSearchListValue(value) {
+      this.$bus.$emit("getCandidates", value)
+
     }
+  },
+  beforeMount() {
+    if (!localStorage.getItem("searchBtn")) {
+      localStorage.setItem("searchBtn", JSON.stringify(this.searchDefault))
+    } else {
+      let item = localStorage.getItem("searchBtn");
+      try {
+        this.searchDefault = JSON.parse(item)
+      } catch (e) {
+        localStorage.removeItem("searchBtn");
+        window.location.reload();
+      }
+    }
+  },
+  mounted() {
+    this.$bus.$on("changeSearchDefault", () => {
+      let item = localStorage.getItem("searchBtn");
+      try {
+        this.searchDefault = JSON.parse(item)
+      } catch (e) {
+        localStorage.removeItem("searchBtn");
+        window.location.reload();
+      }
+    })
+    this.$bus.$on("startSearch", (value) => {
+      top.location.href = this.searchDefault.action + "?" + this.searchDefault.name + "=" + value
+    })
   }
 }
 </script>
@@ -70,6 +87,11 @@ export default {
   top: 20%;
   left: 50%;
   transform: translateX(-50%);
+  opacity: 0.8;
+}
+
+#form:hover {
+  animation: searchFadeOut 0.2s forwards;
 }
 
 input[type=text]:focus {
