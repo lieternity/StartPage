@@ -10,12 +10,12 @@
 </template>
 
 <script>
-import BackGround from "@/components/BackGround";
-import TimeBox from "@/components/timeBox";
-import SearchBox from "@/components/searchBox";
-import SearchList from "@/components/searchList";
-import SearchMenu from "@/components/searchMenu";
-import buttonList from "@/components/buttonList";
+import BackGround from "@/components/home/BackGround";
+import TimeBox from "@/components/home/timeBox";
+import SearchBox from "@/components/home/searchBox";
+import SearchList from "@/components/home/searchList";
+import SearchMenu from "@/components/home/searchMenu";
+import buttonList from "@/components/home/buttonList";
 
 export default {
   name: "homePage",

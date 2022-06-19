@@ -5,13 +5,11 @@
         <use xlink:href="#icon-user"></use>
       </svg>
     </router-link>
-    <router-link class="seticon" to="/set">
+    <router-link class="seticon" to="/setting">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-setting-filling"></use>
       </svg>
     </router-link>
-
-
   </div>
 </template>
 
