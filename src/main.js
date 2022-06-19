@@ -4,6 +4,7 @@ import vueResource from "vue-resource"
 import VueRouter from 'vue-router'
 import router from './router'
 import {Select, Option, Collapse, collapseItem,Button,Input,Switch,Popover} from 'element-ui';
+import './registerServiceWorker'
 
 Vue.use(Select);
 Vue.use(Option);
