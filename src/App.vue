@@ -58,13 +58,13 @@ export default {
       localStorage.setItem("ThemeColor", "followTheSystem")
     }
     if (!localStorage.getItem("ThemeBackGround")) {
-      localStorage.setItem("ThemeBackGround", "img")
+      localStorage.setItem("ThemeBackGround", "solidColor")
     }
     if (!localStorage.getItem("imgSrc")) {
       localStorage.setItem("imgSrc", "https://s1.ax1x.com/2022/06/19/XjgCGV.jpg")
     }
     if (!localStorage.getItem("gradient")) {
-      localStorage.setItem("gradient", "true")
+      localStorage.setItem("gradient", "false")
     }
   },
 }

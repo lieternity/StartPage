@@ -129,7 +129,12 @@ export default {
     }
   },
   watch: {
-    themeBackGround() {
+    themeBackGround(newValue) {
+      if (newValue === "solidColor" || newValue === "video") {
+        localStorage.setItem("gradient", "false")
+      } else {
+        localStorage.setItem("gradient", "true")
+      }
       localStorage.setItem("ThemeBackGround", this.themeBackGround)
       window.location.reload()
     },
