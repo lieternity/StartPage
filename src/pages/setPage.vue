@@ -38,6 +38,10 @@ export default {
           name: "个性化",
           path: "personalise"
         },
+        {
+          name: "关于",
+          path: "about"
+        },
       ]
     }
   },

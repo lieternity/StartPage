@@ -1,5 +1,5 @@
 <template>
-  <div class="homePage">
+  <div :class="{gradient:gradient}" class="homePage">
     <BackGround/>
     <time-box/>
     <search-box/>
@@ -19,6 +19,16 @@ import buttonList from "@/components/home/buttonList";
 
 export default {
   name: "homePage",
+  data() {
+    return {
+      gradient: this.getGradient()
+    }
+  },
+  methods: {
+    getGradient() {
+      return localStorage.getItem("gradient") === "true"
+    }
+  },
   components: {
     SearchMenu,
     SearchList,
@@ -45,6 +55,10 @@ export default {
   height: 100%;
 }
 
+.gradient {
+  background-image: radial-gradient(transparent 0, rgba(0, 0, 0, .5) 100%), radial-gradient(transparent 33%, rgba(0, 0, 0, .3) 166%);
+}
+
 @keyframes searchFadeOut {
   from {
     opacity: 0.8;
@@ -56,6 +70,23 @@ export default {
 
   to {
     opacity: 1;
+  }
+}
+
+@keyframes menuFadeOut {
+  from {
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+  }
+
+  50% {
+    -webkit-transform: scale(1.03);
+    transform: scale(1.03);
+  }
+
+  to {
+    -webkit-transform: scale(1);
+    transform: scale(1);
   }
 }
 

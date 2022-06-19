@@ -1,5 +1,5 @@
 <template>
-  <div class="clock">
+  <div :class="{isSolidColor:SolidColor}" class="clock">
     <div class="hours">
       <div class="first">
         <div class="number">{{ hour[0] }}</div>
@@ -49,7 +49,11 @@ export default {
       this.second = (time + "").substr(4, 6);
     }
   },
-  computed: {},
+  computed: {
+    SolidColor() {
+      return localStorage.getItem("ThemeBackGround") === "solidColor"
+    }
+  },
   mounted() {
     this.timeInterval = setInterval(this.time, 50);
   },
@@ -67,13 +71,17 @@ export default {
   box-sizing: border-box;
 }
 
+.isSolidColor {
+  color: #000000 !important;
+}
+
 .clock {
   height: 10vh;
-  color: white;
   font-size: 6vh;
   font-family: sans-serif;
   line-height: 10.2vh;
   display: flex;
+  color: #FFFFFF;
   position: relative;
   overflow: hidden;
   justify-content: center;
@@ -84,10 +92,6 @@ export default {
   animation: pulse_enter 0.5s linear;
 }
 
-.clock::after {
-  bottom: 0;
-  background: linear-gradient(to bottom, transparent, black);
-}
 
 .clock > div {
   display: flex;
@@ -100,6 +104,7 @@ export default {
 .tick-hidden {
   opacity: 0;
 }
+
 
 .move {
   animation: move linear 1s infinite;

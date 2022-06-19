@@ -73,12 +73,11 @@ export default {
 }
 
 .searchCandidateBackground {
-
   height: auto;
   border-top: none;
   z-index: -1;
   font-size: medium;
-
+  animation: menuFadeOut 0.3s linear;
   overflow-y: hidden;
   transition: .25s;
   -webkit-backdrop-filter: blur(30px);
@@ -87,6 +86,7 @@ export default {
   align-content: center;
   background-color: #ffffff;
   border-radius: 12px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 ul {

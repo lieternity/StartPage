@@ -124,6 +124,7 @@ export default {
   align-content: center;
   background-color: #ffffff;
   border-radius: 12px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .searchMenuShow {
@@ -143,7 +144,7 @@ ul {
   padding: 0;
   line-height: 30px;
   align-content: center;
-  justify-content: space-around;
+  text-align: center;
 }
 
 li {
@@ -151,28 +152,26 @@ li {
   cursor: default;
   border-radius: 50%;
   display: inline-block;
+  width: 100%;
 }
 
 li:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  animation: menuFadein 0.3s linear;
 }
-
-
-@keyframes menuFadeOut {
+@keyframes menuFadein {
   from {
-    -webkit-transform: scale(1);
-    transform: scale(0.5);
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
   }
 
   50% {
-    -webkit-transform: scale(1.05);
+    -webkit-transform: scale(1.03);
     transform: scale(1.03);
   }
 
   to {
-    -webkit-transform: scale(1.05);
+    -webkit-transform: scale(1);
     transform: scale(1);
   }
 }
-
 </style>

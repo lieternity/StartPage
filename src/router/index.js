@@ -4,6 +4,7 @@ import homePage from "@/pages/homePage";
 import setPage from "@/pages/setPage";
 import userSetting from "@/components/setting/userSetting";
 import personaliseSetting from "@/components/setting/personaliseSetting";
+import aboutSetting from "@/components/setting/aboutSetting";
 
 const router = new VueRouter({
     mode:"history",
@@ -33,6 +34,13 @@ const router = new VueRouter({
                         title: "设置-个性化"
                     }
                 },
+                {
+                    path: "about",
+                    component: aboutSetting,
+                    meta: {
+                        title: "设置-关于"
+                    }
+                },
             ]
         }
     ]
@@ -40,7 +48,6 @@ const router = new VueRouter({
 router.beforeEach((to, from, next)=>{
     if (to.fullPath === '/setting'){
         router.push("/setting/user").catch(err => err)
-        console.log(123)
     }
     next()
 })
