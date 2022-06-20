@@ -3,7 +3,7 @@ module.exports = defineConfig({
     transpileDependencies: true,
     pwa: {
         importWorkboxFrom: 'local',
-        assetsVersion: "0.1",
+        assetsVersion: "0.2",
         workboxPluginMode: 'GenerateSW',
         workboxOptions: {
             skipWaiting: true,
