@@ -24,7 +24,7 @@
         </el-switch>
       </el-popover>
       <el-input v-show="themeBackGround === 'img'" v-model="imgSrc" class="imgInput" @blur="setImgSrc"
-                placeholder="请输入内容"></el-input>
+                placeholder="请输入图片的url地址"></el-input>
       <div v-show="themeBackGround === 'video'" @click="upVideoFn" class="upVideo">
         <input ref="upInput" type="file">
         上传视频
