@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import {Message} from "element-ui";
+
 export default {
   name: "buttonList",
   data() {
@@ -35,13 +37,19 @@ export default {
       this.userMenu = !this.userMenu
     },
     userMenuClick($event) {
-      if ($event.target.className === "quit"){
-        console.log("退出")
-      }else{
-        console.log("账户管理")
+      if ($event.target.className === "quit") {
+        localStorage.removeItem('user');
+        Message({
+          type:"success",
+          showClose:"true",
+          message:"退出登录成功"
+        })
+
+      } else {
+        this.$router.replace("/setting/user")
       }
       this.userMenu = !this.userMenu
-    }
+    },
   }
 }
 </script>

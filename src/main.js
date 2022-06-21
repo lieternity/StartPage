@@ -18,9 +18,11 @@ import {
     Avatar,
     FormItem,
     Form,
+    Upload
 } from 'element-ui';
 
 Vue.use(Card)
+Vue.use(Upload)
 Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Avatar)

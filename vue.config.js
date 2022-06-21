@@ -12,6 +12,19 @@ module.exports = defineConfig({
             exclude: [/\.(?:map)$/],
         },
     },
+    devServer: {
+        port: 8080,
+        proxy: {
+            "/api": {
+                target: 'https://sm.ms',
+                changeOrigin: true,
+                secure: false,
+                headers: {
+                    Referer: 'https://sm.ms'
+                }
+            },
+        }
+    }
 
 
 })
