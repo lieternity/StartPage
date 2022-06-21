@@ -19,8 +19,7 @@
             class="switch"
             slot="reference"
             v-model="gradient"
-            active-color="#13ce66"
-            inactive-color="#ff4949">
+        >
         </el-switch>
       </el-popover>
       <el-input v-show="themeBackGround === 'img'" v-model="imgSrc" class="imgInput" @blur="setImgSrc"
@@ -165,7 +164,7 @@ h2 {
 
 .imgInput {
   position: absolute;
-  right: 300px;
+  right: 260px;
   width: 300px;
   display: inline-block;
   margin-right: 30px;

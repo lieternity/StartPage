@@ -39,6 +39,10 @@ export default {
           path: "personalise"
         },
         {
+          name: "功能",
+          path: "function"
+        },
+        {
           name: "关于",
           path: "about"
         },
@@ -100,6 +104,7 @@ export default {
 
 .settingmain {
   width: 100%;
+  padding-left: 20px;
   /*background-color: skyblue;*/
 }
 </style>

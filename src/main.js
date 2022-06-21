@@ -18,11 +18,17 @@ import {
     Avatar,
     FormItem,
     Form,
-    Upload
+    Upload,
+    Timeline,
+    TimelineItem,
+    Dialog
 } from 'element-ui';
 
 Vue.use(Card)
 Vue.use(Upload)
+Vue.use(Timeline)
+Vue.use(Dialog)
+Vue.use(TimelineItem)
 Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Avatar)

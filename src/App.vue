@@ -66,11 +66,17 @@ export default {
     if (!localStorage.getItem("gradient")) {
       localStorage.setItem("gradient", "false")
     }
+    if (!localStorage.getItem("hitokotoClass")) {
+      localStorage.setItem("hitokotoClass", "hitokoto")
+    }
   },
 }
 </script>
 
 <style>
+*{
+  font-family: pr13;
+}
 html {
   width: 100%;
   height: 100%;
@@ -100,4 +106,11 @@ body {
   filter: invert(.9) hue-rotate(.5turn);
 }
 
+@font-face {
+  font-family: pr13;
+  src: url("https://npm.elemecdn.com/bugjava-owo@1.0.1/Fonts-main/13.woff2");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
 </style>

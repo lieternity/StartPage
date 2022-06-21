@@ -7,6 +7,7 @@ import personaliseSetting from "@/components/setting/personaliseSetting";
 import aboutSetting from "@/components/setting/aboutSetting";
 import loginPage from "@/components/setting/loginPage";
 import registerPage from "@/components/setting/registerPage"
+import functionSetting from "@/components/setting/functionSetting";
 
 const router = new VueRouter({
     mode: "history",
@@ -58,6 +59,13 @@ const router = new VueRouter({
                     component: aboutSetting,
                     meta: {
                         title: "设置-关于"
+                    }
+                },
+                {
+                    path: "function",
+                    component: functionSetting,
+                    meta: {
+                        title: "设置-功能"
                     }
                 },
                 {
