@@ -78,7 +78,7 @@ export default {
       const formData = new FormData()
       formData.append('smfile', file.file)
 
-      this.$axios.post('/api/v2/upload', formData, {
+      this.$axios.post(process.env.VUE_APP_UPLOAD + '/api/v2/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': 'itZqjxJ1s3Hxi1IISXPJ5nJFT459WVqy'
