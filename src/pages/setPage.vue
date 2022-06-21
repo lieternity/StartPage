@@ -61,7 +61,7 @@ export default {
 .navigationBar {
   overflow: hidden;
   height: 100%;
-  width: 16%;
+  width: 20%;
   border-right: #cbcbcc solid 1px;
 }
 

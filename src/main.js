@@ -3,9 +3,27 @@ import App from './App.vue'
 import vueResource from "vue-resource"
 import VueRouter from 'vue-router'
 import router from './router'
-import {Select, Option, Collapse, collapseItem,Button,Input,Switch,Popover} from 'element-ui';
+import axios from 'axios'
 import './registerServiceWorker'
+import {
+    Select,
+    Option,
+    Collapse,
+    collapseItem,
+    Button,
+    Input,
+    Switch,
+    Popover,
+    Card,
+    Avatar,
+    FormItem,
+    Form,
+} from 'element-ui';
 
+Vue.use(Card)
+Vue.use(Form)
+Vue.use(FormItem)
+Vue.use(Avatar)
 Vue.use(Select);
 Vue.use(Option);
 Vue.use(Collapse);
@@ -26,5 +44,7 @@ new Vue({
     router: router,
     beforeCreate() {
         Vue.prototype.$bus = this;
+        Vue.prototype.$axios = axios;
+
     }
 })

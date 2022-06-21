@@ -5,9 +5,11 @@ import setPage from "@/pages/setPage";
 import userSetting from "@/components/setting/userSetting";
 import personaliseSetting from "@/components/setting/personaliseSetting";
 import aboutSetting from "@/components/setting/aboutSetting";
+import loginPage from "@/components/setting/loginPage";
+import registerPage from "@/components/setting/registerPage"
 
 const router = new VueRouter({
-    mode:"history",
+    mode: "history",
     routes: [
         {
             path: '/',
@@ -24,7 +26,24 @@ const router = new VueRouter({
                     path: "user",
                     component: userSetting,
                     meta: {
-                        title: "设置-用户"
+                        title: "设置-用户",
+                        isAuth: true
+                    },
+                    beforeEnter: (to, from, next) => {
+                        if (to.meta.isAuth === true) {
+                            let userItemJson = JSON.parse(localStorage.getItem("user"));
+                            try {
+                                if (userItemJson.name && userItemJson.uid) {
+                                    next()
+                                } else {
+                                    next("/setting/login")
+                                }
+                            } catch (e) {
+                                next("/setting/login")
+                            }
+                        } else {
+                            next()
+                        }
                     }
                 },
                 {
@@ -41,15 +60,31 @@ const router = new VueRouter({
                         title: "设置-关于"
                     }
                 },
+                {
+                    path: "login",
+                    component: loginPage,
+                    meta: {
+                        title: "包子起始页-登录"
+                    }
+                },
+                {
+                    path: "register",
+                    component: registerPage,
+                    meta: {
+                        title: "包子起始页-注册"
+                    }
+                },
             ]
         }
     ]
 })
-router.beforeEach((to, from, next)=>{
-    if (to.fullPath === '/setting'){
-        router.push("/setting/user").catch(err => err)
+router.beforeEach((to, from, next) => {
+    if (to.fullPath === '/setting') {
+        next("/setting/user")
+    } else {
+        next()
     }
-    next()
+
 })
 
 router.afterEach((to) => {
