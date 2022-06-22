@@ -20,7 +20,10 @@
           <el-card>
             <h4>网站的设置部分完成</h4>
             <dt>功能：</dt>
-            <dd>用户设置云同步，自定义背景（本地视频，在线图片&lt;需要搭配 <a target="_blank" href="https://www.baidu.com/s?word=%E5%9B%BE%E5%BA%8A">图床</a> &gt;），自定义头像 等...</dd>
+            <dd>用户设置云同步，自定义背景（本地视频，在线图片&lt;需要搭配 <a target="_blank"
+                                                   href="https://www.baidu.com/s?word=%E5%9B%BE%E5%BA%8A">图床</a> &gt;），自定义头像
+              等...
+            </dd>
           </el-card>
         </el-timeline-item>
         <el-timeline-item timestamp="2022/6/20" placement="top">
@@ -28,6 +31,12 @@
             <h4>网站大体完成</h4>
             <dt>功能：</dt>
             <dd>自以为好看</dd>
+          </el-card>
+        </el-timeline-item>
+        <el-timeline-item timestamp="2022/6/18" placement="top">
+          <el-card>
+            <h4>初始化VUE</h4>
+            <p>npm init</p>
           </el-card>
         </el-timeline-item>
       </el-timeline>
