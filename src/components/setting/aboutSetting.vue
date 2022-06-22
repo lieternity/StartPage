@@ -35,7 +35,7 @@
         </el-timeline-item>
         <el-timeline-item timestamp="2022/6/18" placement="top">
           <el-card>
-            <h4>初始化VUE</h4>
+            <h4>初始化工程</h4>
             <p>npm init</p>
           </el-card>
         </el-timeline-item>
