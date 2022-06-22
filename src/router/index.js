@@ -10,7 +10,7 @@ import registerPage from "@/components/setting/registerPage"
 import functionSetting from "@/components/setting/functionSetting";
 
 const router = new VueRouter({
-    // mode: "history",
+    mode: "history",
     routes: [
         {
             path: '/',
