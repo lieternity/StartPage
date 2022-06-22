@@ -76,12 +76,11 @@ export default {
     },
     upload(file) {
       const formData = new FormData()
-      formData.append('smfile', file.file)
+      formData.append('pic', file.file)
 
-      this.$axios.post(process.env.VUE_APP_UPLOAD + '/api/v2/upload', formData, {
+      this.$axios.post(process.env.VUE_APP_UPLOAD, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
-          'Authorization': 'itZqjxJ1s3Hxi1IISXPJ5nJFT459WVqy'
         }
       }, {
         timeout: 30000

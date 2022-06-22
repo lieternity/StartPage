@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     getDiyAction() {
-      let diyAction = localStorage.getItem("getdiyaction");
+      let diyAction = localStorage.getItem("diyAction");
       if (/(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-.,@?^=%&amp;:/~+#]*[\w\-@?^=%&amp;/~+#])?/.test(diyAction)) {
         let diyActionArray = /(.*?)\?(.*?)=/.exec(diyAction);
         return {

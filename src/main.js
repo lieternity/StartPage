@@ -9,6 +9,7 @@ import {
     Select,
     Option,
     Collapse,
+    Col,
     collapseItem,
     Button,
     Input,
@@ -21,10 +22,12 @@ import {
     Upload,
     Timeline,
     TimelineItem,
-    Dialog
+    Dialog,
+    Autocomplete
 } from 'element-ui';
 
 Vue.use(Card)
+Vue.use(Col)
 Vue.use(Upload)
 Vue.use(Timeline)
 Vue.use(Dialog)
@@ -40,7 +43,7 @@ Vue.use(Button);
 Vue.use(Input);
 Vue.use(Popover);
 Vue.use(collapseItem);
-
+Vue.use(Autocomplete)
 Vue.use(VueRouter)
 Vue.use(vueResource)
 

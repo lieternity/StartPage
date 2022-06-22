@@ -15,6 +15,20 @@
         </el-option>
       </el-select>
     </div>
+    <div class="controlCard">
+      <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-sey-talk-a"></use>
+      </svg>
+      <span>自定义搜索引擎</span>
+
+      <el-autocomplete
+          class="inline-input"
+          v-model="searchClass"
+          :fetch-suggestions="querySearch"
+          placeholder="请输入搜索引擎URL"
+      ></el-autocomplete>
+
+    </div>
   </div>
 </template>
 
@@ -23,6 +37,8 @@ export default {
   name: "functionSetting",
   data() {
     return {
+      searchClass: this.getSearchClass(),
+      restaurants: [],
       hitokotoClasss: [
         {
           value: "hitokoto",
@@ -33,13 +49,40 @@ export default {
           label: "诗词"
         }
       ],
-      hitokotoClass:this.getHitokotoClass()
+      hitokotoClass: this.getHitokotoClass()
     }
   },
-  methods:{
-    getHitokotoClass(){
+  methods: {
+    querySearch(queryString, cb) {
+      var restaurants = this.restaurants;
+      var results = queryString ? restaurants.filter(this.createFilter(queryString)) : restaurants;
+      cb(results);
+    },
+    createFilter(queryString) {
+      return (restaurant) => {
+        return (restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
+      };
+    },
+    loadAll() {
+      return [
+        {"value": "https://www.sogou.com/web?query=", "name": "搜狗搜索"},
+        {"value": "https://www.so.com/s?q=", "name": "360搜索"},
+      ];
+    },
+    getHitokotoClass() {
       return localStorage.getItem("hitokotoClass")
+    },
+    getSearchClass() {
+      return localStorage.getItem("diyAction")
     }
+  },
+  watch: {
+    searchClass(newValue) {
+      localStorage.setItem("diyAction", newValue)
+    }
+  },
+  mounted() {
+    this.restaurants = this.loadAll();
   }
 }
 </script>
@@ -54,6 +97,7 @@ export default {
   padding: 12px 16px;
   border: #e5e7eb solid 1px;
   border-radius: 10px;
+  margin-top: 30px;
 }
 
 .controlCard * {
@@ -67,5 +111,10 @@ export default {
   text-align: center;
   outline: none;
   border-radius: 5px;
+}
+
+.inline-input {
+  float: right;
+  width: 400px;
 }
 </style>

@@ -24,6 +24,17 @@
       </el-popover>
       <el-input v-show="themeBackGround === 'img'" v-model="imgSrc" class="imgInput" @blur="setImgSrc"
                 placeholder="请输入图片的url地址"></el-input>
+      <div v-show="themeBackGround === 'img'" class="upImg">
+        <el-upload
+            action=""
+            class="alignContainer"
+            :http-request="upImgFn"
+            :show-file-list="false"
+            :before-upload="beforeAvatarUpload"
+        >
+          <el-button class="avatar-update">上传背景图</el-button>
+        </el-upload>
+      </div>
       <div v-show="themeBackGround === 'video'" @click="upVideoFn" class="upVideo">
         <input ref="upInput" type="file">
         上传视频
@@ -56,6 +67,7 @@
 
 <script>
 import BackGround from "@/components/home/BackGround";
+import {Message} from "element-ui";
 
 export default {
   name: "personaliseSetting",
@@ -88,12 +100,25 @@ export default {
     }
   },
   methods: {
-    giveMessage() {
-      console.log(123)
-      this.$notify.info({
-        title: '消息',
-        message: '这是一条消息的提示消息'
-      });
+    beforeAvatarUpload(file) {
+      const isJpgOrPng = (file.type === 'image/jpeg' || file.type === 'image/png');
+      const isLt2M = file.size / 1024 / 1024 < 5;
+
+      if (!isJpgOrPng) {
+        Message({
+          showClose: true,
+          message: '上传头像图片只能是 JPG 或者 PNG格式!',
+          type: 'error'
+        });
+      }
+      if (!isLt2M) {
+        Message({
+          showClose: true,
+          message: '上传头像图片大小不能超过 5MB!',
+          type: 'error'
+        });
+      }
+      return isJpgOrPng && isLt2M;
     },
     getGradient() {
       return localStorage.getItem("gradient") === "true"
@@ -125,6 +150,44 @@ export default {
           console.log("上传失败");
         }
       }
+    },
+    upImgFn(file) {
+      const formData = new FormData()
+      formData.append('pic', file.file)
+
+      this.$axios.post(process.env.VUE_APP_UPLOAD, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        }
+      }, {
+        timeout: 30000
+      }).then(res => {
+        console.log(res.data)
+        if (res.data.code === "success") {
+          localStorage.setItem("imgSrc", res.data.data.url)
+          Message({
+            type: "success",
+            message: "上传成功",
+            showClose: true,
+            duration: 1000,
+            onClose: () => {
+              window.location.reload()
+            }
+          })
+        } else {
+          Message({
+            type: "warning",
+            message: "上传出错",
+            showClose: "true"
+          })
+        }
+      }).catch(err => {
+        Message({
+          type: "warning",
+          message: err,
+          showClose: "true"
+        })
+      })
     }
   },
   watch: {
@@ -164,7 +227,7 @@ h2 {
 
 .imgInput {
   position: absolute;
-  right: 260px;
+  right: 330px;
   width: 300px;
   display: inline-block;
   margin-right: 30px;
@@ -174,7 +237,7 @@ h2 {
 
 .switch {
   position: relative;
-  right: -280px;
+  right: -200px;
 }
 
 .mainBackground {
@@ -191,6 +254,12 @@ h2 {
   border: #cbcbcc solid 1px;
   animation: menuFadeOut 0.3s forwards;
   cursor: pointer;
+}
+
+.upImg {
+  position: absolute;
+  right: 240px !important;
+  display: inline-block;
 }
 
 .upVideo input {

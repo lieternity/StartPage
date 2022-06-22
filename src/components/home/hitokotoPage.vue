@@ -38,6 +38,7 @@ export default {
   height: 100px;
   text-align: center;
   line-height: 100px;
+  z-index: -1;
   /*background-color: green;*/
   /*filter: blur(10px);*/
 }
