@@ -17,7 +17,7 @@
     </div>
     <div class="controlCard">
       <svg class="icon" aria-hidden="true">
-        <use xlink:href="#icon-sey-talk-a"></use>
+        <use xlink:href="#icon-search"></use>
       </svg>
       <span>自定义搜索引擎</span>
 

@@ -1,5 +1,22 @@
 <template>
-  <div class="aboutRoot" style="height: 100%;width: 100%;padding: 20px">
+  <div class="aboutRoot" style="height: 100%;width: 100%;padding: 20px;overflow: scroll;">
+    <template>
+      <el-backtop target=".aboutRoot" :bottom="50">
+        <div style="{
+        height: 100%;
+        width: 100%;
+        background-color: #f2f5f6;
+        box-shadow: 0 0 6px rgba(0,0,0, .12);
+        text-align: center;
+        line-height: 40px;
+        color: #1989fa;
+      }">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-xiangshang1"></use>
+          </svg>
+        </div>
+      </el-backtop>
+    </template>
     <h2>关于</h2>
     <el-collapse class="collapseList">
       <el-collapse-item title="设备信息 DeviceInformation " name="1">
@@ -8,14 +25,36 @@
         <div>系统：{{ bowserName.OSname }}</div>
       </el-collapse-item>
       <el-collapse-item title="版本信息 VersionInformation" name="2">
-        <div>版本：0.3</div>
-        <div>更新日期：2022-6-19</div>
-        <div>发布者：包子</div>
+        <div>版本：{{ config.version }}</div>
+        <div>更新日期：{{ config.author.upDataTime }}</div>
+        <div>发布者：{{ config.author.name }}</div>
+      </el-collapse-item>
+      <el-collapse-item title="项目依赖 ProjectDependencies" name="3">
+        <h2>项目依赖</h2>
+        <el-divider></el-divider>
+        <el-timeline>
+          <el-timeline-item
+              v-for="(value, key) in config.dependencies"
+              :key="key"
+              :timestamp="value">
+            {{ key }}
+          </el-timeline-item>
+        </el-timeline>
+        <h2>开发依赖</h2>
+        <el-divider></el-divider>
+        <el-timeline>
+          <el-timeline-item
+              v-for="(value, key) in config.devDependencies"
+              :key="key"
+              :timestamp="value">
+            {{ key }}
+          </el-timeline-item>
+        </el-timeline>
       </el-collapse-item>
       <el-button @click="goToBin" type="text">反馈中心 FeedbackHub</el-button>
     </el-collapse>
     <div class="block">
-      <el-timeline>
+      <el-timeline class="Timeline">
         <el-timeline-item timestamp="2022/6/21" placement="top">
           <el-card>
             <h4>网站的设置部分完成</h4>
@@ -46,12 +85,14 @@
 
 <script>
 import Bowser from "bowser";
+import Config from '../../../package.json'
 
 export default {
   name: "aboutSetting",
   data() {
     return {
-      isClick: true
+      isClick: true,
+      config: Config
     }
   },
   methods: {
@@ -68,6 +109,8 @@ export default {
         OSname: browser.getOSName()
       }
     }
+  }, mounted() {
+    // console.log(Config)
   }
 
 }
@@ -82,5 +125,9 @@ h2 {
   display: flex;
   flex-direction: column !important;
   gap: 2.5rem !important;
+}
+
+.collapseList, .Timeline {
+  width: 80%;
 }
 </style>

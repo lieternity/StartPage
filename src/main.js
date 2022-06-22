@@ -23,10 +23,14 @@ import {
     Timeline,
     TimelineItem,
     Dialog,
-    Autocomplete
+    Autocomplete,
+    Backtop,
+    Divider
 } from 'element-ui';
 
 Vue.use(Card)
+Vue.use(Divider)
+Vue.use(Backtop)
 Vue.use(Col)
 Vue.use(Upload)
 Vue.use(Timeline)
