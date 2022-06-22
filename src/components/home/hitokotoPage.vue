@@ -23,7 +23,6 @@ export default {
       method: "get",
       url: url
     }).then((res) => {
-      console.log(res.data.hitokoto);
       this.msg = res.data.hitokoto
     })
   }

@@ -19,6 +19,7 @@ export default {
     }
   },
   mounted() {
+    console.log('\n' + ' %c 包子起始页 %c https://search.bugjava.cn ' + '\n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;');
     if (localStorage.getItem("ThemeColor") === "followTheSystem") {
       if (window.matchMedia('(prefers-color-scheme)').media === 'not all') {
         console.log('Browser doesn\'t support dark mode');

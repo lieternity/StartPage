@@ -46,7 +46,7 @@ export default {
         })
 
       } else {
-        this.$router.replace("/setting/user")
+        this.$router.replace("/setting/user").catch(()=>{})
       }
       this.userMenu = !this.userMenu
     },

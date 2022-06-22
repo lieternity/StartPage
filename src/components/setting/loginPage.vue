@@ -102,7 +102,7 @@ export default {
                 type: 'success',
                 duration: 1000,
                 onClose: () => {
-                  this.$router.replace("/setting/user")
+                  this.$router.replace("/setting/user").catch(()=>{})
                 }
               });
             } else if (res.data.code === 403) {
