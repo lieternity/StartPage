@@ -53,7 +53,7 @@ export default {
       clearTimeout(this.timer);
       this.timer = setTimeout(() => {
         this.$bus.$emit("getCandidates", value)
-      }, 200);
+      }, 300);
 
 
     }
