@@ -126,6 +126,7 @@ export default {
 <style scoped>
 h2 {
   color: #666666;
+  cursor: default;
 }
 
 .aboutRoot {

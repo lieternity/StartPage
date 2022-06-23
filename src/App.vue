@@ -121,6 +121,11 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
 }
 
 .icon {
