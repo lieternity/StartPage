@@ -1,6 +1,7 @@
 <template>
   <div id="form">
-    <input @keyup="giveSearchListValue(searchValue)" @click="changeSearchMenuShow(false)" @keydown.enter="startSearch"
+    <input @keyup="giveSearchListValue(searchValue)" @click="changeSearchMenuShow(false)"
+           @keydown.enter="startSearch"
            v-model="searchValue" type="text" aria-autocomplete="none" autocomplete="off">
     <div @click="changeSearchMenuShow" class="iconbox" id="searchBtnList">
       <svg class="icon iconsvg" aria-hidden="true">
@@ -22,6 +23,7 @@ export default {
   data() {
     return {
       searchValue: "",
+      timer: "",
       searchDefault: {
         type: "baidu",
         action: "https://www.baidu.com/s",
@@ -43,7 +45,11 @@ export default {
       this.$bus.$emit("searchMenuShowStatus", value)
     },
     giveSearchListValue(value) {
-      this.$bus.$emit("getCandidates", value)
+      clearTimeout(this.timer);
+      this.timer = setTimeout(() => {
+        this.$bus.$emit("getCandidates", value)
+      }, 200);
+
 
     }
   },

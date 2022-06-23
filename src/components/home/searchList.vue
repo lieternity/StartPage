@@ -39,15 +39,17 @@ export default {
       if (value === "") {
         this.candidates = [];
       } else {
-        const url = 'https://suggestion.baidu.com/su';
-        this.$http.jsonp(url, {
+        const url = process.env.VUE_APP_SERVE + '/api/baidusug';
+        this.$http.get(url, {
           params: {
             wd: value
           },
-          jsonp: 'cb'
         }).then(res => {
-          if (res.data) {
-            this.candidates = res.data.s
+          if (res.data.code === 200) {
+            this.candidates = [];
+            for (let value of res.data.s) {
+              this.candidates.push(value.q)
+            }
           } else {
             this.candidates = [];
           }
