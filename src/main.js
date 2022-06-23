@@ -25,11 +25,13 @@ import {
     Dialog,
     Autocomplete,
     Backtop,
-    Divider
+    Divider,
+    Slider
 } from 'element-ui';
 
 Vue.use(Card)
 Vue.use(Divider)
+Vue.use(Slider)
 Vue.use(Backtop)
 Vue.use(Col)
 Vue.use(Upload)

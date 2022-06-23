@@ -55,9 +55,16 @@
     </el-collapse>
     <div class="block">
       <el-timeline class="Timeline">
+        <el-timeline-item timestamp="2022/6/23" placement="top">
+          <el-card>
+            <h4>新增自定义字体</h4>
+            <dt>功能：</dt>
+            <dd>用户可以自主切换网站的默认字体样式和大小</dd>
+          </el-card>
+        </el-timeline-item>
         <el-timeline-item timestamp="2022/6/21" placement="top">
           <el-card>
-            <h4>网站的设置部分完成</h4>
+            <h4>网站整体完成</h4>
             <dt>功能：</dt>
             <dd>用户设置云同步，自定义背景（本地视频，在线图片&lt;需要搭配 <a target="_blank"
                                                    href="https://www.baidu.com/s?word=%E5%9B%BE%E5%BA%8A">图床</a> &gt;），自定义头像

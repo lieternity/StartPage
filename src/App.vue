@@ -1,5 +1,5 @@
 <template>
-  <div :class="{darkTheme:darkTheme}" style="height: 100%">
+  <div :style="{fontSize:font_size,fontFamily:font_family}" :class="{darkTheme:darkTheme}" style="height: 100%">
     <router-view></router-view>
   </div>
 </template>
@@ -10,15 +10,43 @@ export default {
   name: "App",
   data() {
     return {
-      darkTheme: ""
+      darkTheme: "",
+      font_size: this.getFontSize(),
+      font_family: this.getfontFamily()
     }
   },
   methods: {
     changeTheme() {
       this.$bus.$emit("darkTheme", this.darkTheme)
-    }
+    },
+    getfontFamily() {
+      try {
+        return (JSON.parse(localStorage.getItem("font_style"))).fontFamily
+      } catch (e) {
+        return ""
+      }
+    },
+    getFontSize() {
+      try {
+        return (JSON.parse(localStorage.getItem("font_style"))).fontSize + "px"
+      } catch (e) {
+        return ""
+      }
+    },
   },
   mounted() {
+    this.$bus.$on("giveFontSize", (value) => {
+      this.font_size = value + 'px'
+      let font_style = JSON.parse(localStorage.getItem("font_style"));
+      font_style.fontSize = value
+      localStorage.setItem("font_style", JSON.stringify(font_style))
+    })
+    this.$bus.$on("giveFontFamily", (value) => {
+      this.font_family = value
+      let font_style = JSON.parse(localStorage.getItem("font_style"));
+      font_style.fontFamily = value
+      localStorage.setItem("font_style", JSON.stringify(font_style))
+    })
     console.log('\n' + ' %c 包子起始页 %c https://search.bugjava.cn ' + '\n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;');
     if (localStorage.getItem("ThemeColor") === "followTheSystem") {
       if (window.matchMedia('(prefers-color-scheme)').media === 'not all') {
@@ -70,14 +98,15 @@ export default {
     if (!localStorage.getItem("hitokotoClass")) {
       localStorage.setItem("hitokotoClass", "hitokoto")
     }
+    if (!localStorage.getItem("font_style")) {
+      localStorage.setItem("font_style", JSON.stringify({fontSize: 16, fontFamily: '"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;'}))
+    }
   },
 }
 </script>
 
 <style>
-*{
-  font-family: pr13;
-}
+
 html {
   width: 100%;
   height: 100%;
@@ -88,7 +117,6 @@ body {
   height: 100%;
   overflow: hidden;
   margin: 0;
-  font-family: microsoft yahei light, microsoft yahei, pingfang sc, Helvetica, sans-serif, 等线;
   background-color: #333;
   background-repeat: no-repeat;
   background-size: cover;
@@ -108,10 +136,163 @@ body {
 }
 
 @font-face {
-  font-family: pr13;
+  font-family: font_pr1;
+  src: url("https://npm.elemecdn.com/bugjava-owo@1.0.1/Fonts-main/1.woff2");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: font_pr2;
+  src: url("https://npm.elemecdn.com/bugjava-owo@1.0.1/Fonts-main/2.woff2");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: font_pr3;
+  src: url("https://npm.elemecdn.com/bugjava-owo@1.0.1/Fonts-main/3.woff2");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: font_pr4;
+  src: url("https://npm.elemecdn.com/bugjava-owo@1.0.1/Fonts-main/4.woff2");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: font_pr5;
+  src: url("https://npm.elemecdn.com/bugjava-owo@1.0.1/Fonts-main/5.woff2");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: font_pr6;
+  src: url("https://npm.elemecdn.com/bugjava-owo@1.0.1/Fonts-main/6.woff2");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: font_pr7;
+  src: url("https://npm.elemecdn.com/bugjava-owo@1.0.1/Fonts-main/7.woff2");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: font_pr8;
+  src: url("https://npm.elemecdn.com/bugjava-owo@1.0.1/Fonts-main/8.woff2");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: font_pr9;
+  src: url("https://npm.elemecdn.com/bugjava-owo@1.0.1/Fonts-main/9.woff2");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: font_pr10;
+  src: url("https://npm.elemecdn.com/bugjava-owo@1.0.1/Fonts-main/10.woff2");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: font_pr11;
+  src: url("https://npm.elemecdn.com/bugjava-owo@1.0.1/Fonts-main/11.woff2");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: font_pr12;
+  src: url("https://npm.elemecdn.com/bugjava-owo@1.0.1/Fonts-main/12.woff2");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: font_pr13;
   src: url("https://npm.elemecdn.com/bugjava-owo@1.0.1/Fonts-main/13.woff2");
   font-style: normal;
   font-weight: 300;
   font-display: swap;
 }
+
+@font-face {
+  font-family: font_pr14;
+  src: url("https://npm.elemecdn.com/bugjava-owo@1.0.1/Fonts-main/14.woff2");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: font_pr15;
+  src: url("https://npm.elemecdn.com/bugjava-owo@1.0.1/Fonts-main/15.woff2");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: font_pr16;
+  src: url("https://npm.elemecdn.com/bugjava-owo@1.0.1/Fonts-main/16.woff2");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: font_pr17;
+  src: url("https://npm.elemecdn.com/bugjava-owo@1.0.1/Fonts-main/17.woff2");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: font_pr18;
+  src: url("https://npm.elemecdn.com/bugjava-owo@1.0.1/Fonts-main/18.woff2");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: font_pr19;
+  src: url("https://npm.elemecdn.com/bugjava-owo@1.0.1/Fonts-main/19.woff2");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: font_pr20;
+  src: url("https://npm.elemecdn.com/bugjava-owo@1.0.1/Fonts-main/20.woff2");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
 </style>
