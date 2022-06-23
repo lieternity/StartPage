@@ -1,6 +1,6 @@
 <template>
   <div id="form">
-    <input @keyup="giveSearchListValue(searchValue)" @click="changeSearchMenuShow(false)"
+    <input @click="changeSearchMenuShow(false)"
            @keydown.enter="startSearch"
            v-model="searchValue" type="text" aria-autocomplete="none" autocomplete="off">
     <div @click="changeSearchMenuShow" class="iconbox" id="searchBtnList">
@@ -35,6 +35,11 @@ export default {
   computed: {
     iconList() {
       return "#icon-" + this.searchDefault.type
+    }
+  },
+  watch:{
+    searchValue(){
+      this.giveSearchListValue(this.searchValue)
     }
   },
   methods: {
