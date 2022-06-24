@@ -191,7 +191,6 @@ export default {
       localStorage.setItem("diyAction", newValue)
     },
     fontSize(newValue) {
-      console.log(newValue)
       this.$bus.$emit("giveFontSize", newValue)
     },
     fontFamily(newValue) {
