@@ -1,6 +1,7 @@
 const {defineConfig} = require('@vue/cli-service')
 module.exports = defineConfig({
     transpileDependencies: true,
+    productionSourceMap:false,
     pwa: {
         importWorkboxFrom: 'local',
         assetsVersion: "0.2",
