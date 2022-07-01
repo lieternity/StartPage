@@ -9,6 +9,7 @@
             :key="candidate">
           {{ candidate }}
         </li>
+
       </ul>
     </div>
   </div>

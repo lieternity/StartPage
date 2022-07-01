@@ -1,11 +1,16 @@
 <template>
-  <div class="buttonlist">
-    <div class="usericon" @click="userMenuShow($event)">
+  <div class="buttonList">
+    <div class="appIcon" @click="showAppList">
+      <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-app"></use>
+      </svg>
+    </div>
+    <div class="userIcon" @click="userMenuShow($event)">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-user"></use>
       </svg>
     </div>
-    <router-link class="seticon" to="/setting">
+    <router-link class="setIcon" to="/setting">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-setting-filling"></use>
       </svg>
@@ -31,6 +36,9 @@ export default {
     }
   },
   methods: {
+    showAppList() {
+      this.$bus.$emit("changeAppListShow")
+    },
     userMenuShow($event) {
       this.left = $event.clientX
       this.top = $event.clientY
@@ -40,13 +48,14 @@ export default {
       if ($event.target.className === "quit") {
         localStorage.removeItem('user');
         Message({
-          type:"success",
-          showClose:"true",
-          message:"退出登录成功"
+          type: "success",
+          showClose: "true",
+          message: "退出登录成功"
         })
 
       } else {
-        this.$router.replace("/setting/user").catch(()=>{})
+        this.$router.replace("/setting/user").catch(() => {
+        })
       }
       this.userMenu = !this.userMenu
     },
@@ -55,15 +64,15 @@ export default {
 </script>
 
 <style scoped>
-.buttonlist {
+.buttonList {
   position: fixed;
   top: 20px;
   right: 30px;
-  width: 120px;
+  width: 180px;
 
 }
 
-.usericon, .seticon {
+.userIcon, .setIcon,.appIcon {
   display: inline-block;
   line-height: 48px;
   text-align: center;
@@ -98,7 +107,7 @@ export default {
   animation: changeSize 0.2s forwards;
 }
 
-.usericon:hover, .seticon:hover {
+.userIcon:hover, .setIcon:hover,.appIcon:hover {
   animation: changeSize 0.2s forwards;
 }
 

@@ -55,6 +55,13 @@
     </el-collapse>
     <div class="block">
       <el-timeline class="Timeline">
+        <el-timeline-item timestamp="2022/7/1" placement="top">
+          <el-card>
+            <h4>新增快捷导航</h4>
+            <dt>功能：</dt>
+            <dd>用户可以快速进入自己常用的网站</dd>
+          </el-card>
+        </el-timeline-item>
         <el-timeline-item timestamp="2022/6/23" placement="top">
           <el-card>
             <h4>新增自定义字体</h4>

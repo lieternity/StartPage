@@ -7,6 +7,7 @@
     <search-list/>
     <button-list/>
     <hitokoto-page/>
+    <app-list/>
   </div>
 </template>
 
@@ -18,6 +19,7 @@ import SearchList from "@/components/home/searchList";
 import SearchMenu from "@/components/home/searchMenu";
 import buttonList from "@/components/home/buttonList";
 import HitokotoPage from "@/components/home/hitokotoPage";
+import AppList from "@/components/home/AppList";
 
 export default {
   name: "homePage",
@@ -32,6 +34,7 @@ export default {
     }
   },
   components: {
+    AppList,
     HitokotoPage,
     SearchMenu,
     SearchList,
