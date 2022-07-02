@@ -147,7 +147,12 @@ export default {
     if (!localStorage.getItem("develop")) {
       localStorage.setItem("develop", "")
     }else{
-      this.otherApps = localStorage.getItem("develop");
+      let appsArr = localStorage.getItem("develop").split("#");
+      for (let i = 0; i < appsArr.length-1; i++) {
+        let parse = JSON.parse(appsArr[i]);
+        this.otherApps.push(parse)
+      }
+
     }
   }
 }

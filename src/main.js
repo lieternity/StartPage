@@ -26,7 +26,9 @@ import {
     Autocomplete,
     Backtop,
     Divider,
-    Slider
+    Slider,
+    MessageBox,
+    Message
 } from 'element-ui';
 
 Vue.use(Card)
@@ -62,6 +64,7 @@ new Vue({
     beforeCreate() {
         Vue.prototype.$bus = this;
         Vue.prototype.$axios = axios;
-
+        Vue.prototype.$prompt = MessageBox.prompt
+        Vue.prototype.$message = Message
     }
 })

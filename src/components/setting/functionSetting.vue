@@ -49,15 +49,25 @@
             class="functionSlider"
             v-model="fontSize"
             :min="13"
-            :max="30"
+            :max="25"
         >
         </el-slider>
       </div>
+    </div>
+    <div class="controlCard">
+      <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-jurassic_label"></use>
+      </svg>
+      <span>自定义快捷导航</span>
+      <el-button style="float: right" @click="addLable">添加自定义网站</el-button>
+
     </div>
   </div>
 </template>
 
 <script>
+import {nanoid} from 'nanoid'
+
 export default {
   name: "functionSetting",
   data() {
@@ -83,7 +93,7 @@ export default {
         }, {
           value: '',
           label: '默认字体'
-        },{
+        }, {
           value: 'font_pr1',
           label: '楷体'
         }, {
@@ -149,6 +159,32 @@ export default {
     }
   },
   methods: {
+    addLable() {
+      this.$prompt('自定义网站  例：百度#https://baidu.com', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        inputPattern: /.*?#.*?/,
+        inputErrorMessage: '格式不正确'
+      }).then(({value}) => {
+        let oldValue = localStorage.getItem("develop");
+        let newValue = oldValue + JSON.stringify({
+          id: nanoid(),
+          name: value.split("#")[0],
+          link: value.split("#")[1]
+        }) + "#";
+        localStorage.setItem("develop", newValue)
+        this.$message({
+          type: "success",
+          message: "添加成功"
+        })
+      }).catch((err) => {
+        console.error(err)
+        this.$message({
+          type: 'info',
+          message: err
+        });
+      });
+    },
     getfontFamily() {
       try {
         return (JSON.parse(localStorage.getItem("font_style"))).fontFamily

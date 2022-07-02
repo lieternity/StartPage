@@ -117,7 +117,7 @@ body {
   height: 100%;
   overflow: hidden;
   margin: 0;
-  background-color: #333;
+  background-color: #ffffff;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
