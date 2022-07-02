@@ -1,18 +1,23 @@
 <template>
   <div :style="{fontSize:font_size,fontFamily:font_family}" :class="{darkTheme:darkTheme}" style="height: 100%">
+    <loading-global v-if="showLoading"></loading-global>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 
+import LoadingGlobal from "@/components/home/loadingGlobal";
+
 export default {
   name: "App",
+  components: {LoadingGlobal},
   data() {
     return {
       darkTheme: "",
       font_size: this.getFontSize(),
-      font_family: this.getfontFamily()
+      font_family: this.getfontFamily(),
+      showLoading: true
     }
   },
   methods: {
@@ -33,6 +38,13 @@ export default {
         return ""
       }
     },
+  },
+  beforeMount() {
+    document.onreadystatechange = () => {
+      if (document.readyState === "complete") {
+        this.showLoading = false
+      }
+    }
   },
   mounted() {
     this.$bus.$on("giveFontSize", (value) => {
@@ -99,7 +111,10 @@ export default {
       localStorage.setItem("hitokotoClass", "hitokoto")
     }
     if (!localStorage.getItem("font_style")) {
-      localStorage.setItem("font_style", JSON.stringify({fontSize: 16, fontFamily: '"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;'}))
+      localStorage.setItem("font_style", JSON.stringify({
+        fontSize: 16,
+        fontFamily: '"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;'
+      }))
     }
   },
 }
