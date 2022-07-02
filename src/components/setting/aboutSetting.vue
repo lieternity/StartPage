@@ -55,6 +55,13 @@
     </el-collapse>
     <div class="block">
       <el-timeline class="Timeline">
+        <el-timeline-item timestamp="2022/7/2" placement="top">
+          <el-card>
+            <h4>新增载入页面动画</h4>
+            <dt>功能：</dt>
+            <dd>在页面没有完全加载完成前，显示动画</dd>
+          </el-card>
+        </el-timeline-item>
         <el-timeline-item timestamp="2022/7/1" placement="top">
           <el-card>
             <h4>新增快捷导航</h4>

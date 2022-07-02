@@ -1,6 +1,6 @@
 {
   "name": "homepage",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve --mode development",
@@ -54,6 +54,6 @@
   "author": {
     "name": "包子",
     "url": "https://www.bugjava.cn/",
-    "upDataTime": "2022-07-01"
+    "upDataTime": "2022-07-02"
   }
 }
