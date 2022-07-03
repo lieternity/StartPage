@@ -2,16 +2,18 @@
   <div :style="{fontSize:font_size,fontFamily:font_family}" :class="{darkTheme:darkTheme}" style="height: 100%">
     <loading-global v-if="showLoading"></loading-global>
     <router-view></router-view>
+    <right-click/>
   </div>
 </template>
 
 <script>
 
 import LoadingGlobal from "@/components/home/loadingGlobal";
+import RightClick from "@/components/rightClick";
 
 export default {
   name: "App",
-  components: {LoadingGlobal},
+  components: {RightClick, LoadingGlobal},
   data() {
     return {
       darkTheme: "",
