@@ -57,7 +57,7 @@
         </a>
       </li>
       <li>
-        <a href="https://api.bugjava.cn/">
+        <a target="_blank" href="https://api.bugjava.cn/">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-api"></use>
           </svg>
