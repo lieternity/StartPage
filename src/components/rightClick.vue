@@ -99,18 +99,8 @@ export default {
       return false;
     }
     document.onkeydown = function () {
-      //f12
-      if (window.event && window.event.keyCode === 123) {
-        event.keyCode = 0;
-        event.returnValue = false;
-        return false;
-      }
       //ctrl+u
       if (event.ctrlKey && window.event.keyCode === 85) {
-        return false;
-      }
-      //ctrl+shift+i
-      if ((event.ctrlKey) && (event.shiftKey) && (event.keyCode === 73)) {
         return false;
       }
       // Ctrl+S

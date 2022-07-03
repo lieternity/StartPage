@@ -6,6 +6,17 @@
     </div>
     <div class="controlCard">
       <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-huaban"></use>
+      </svg>
+      <span>页面载入动画 <span style="font-size: 10px;color: #7f7f88;">(如果使用的在线图片，将载入动画关闭较好！！！)</span> </span>
+      <el-switch style="position:absolute;right: 100px;top:20px"
+                 v-model="loadingAnimation"
+                 active-color="#13ce66"
+                 inactive-color="#ff4949">
+      </el-switch>
+    </div>
+    <div class="controlCard">
+      <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-tupian"></use>
       </svg>
       <span>背景</span>
@@ -73,6 +84,7 @@ export default {
   name: "personaliseSetting",
   data() {
     return {
+      loadingAnimation: this.getLoadingAnimation(),
       themeBackGrounds: [{
         value: 'solidColor',
         label: '纯色'
@@ -100,6 +112,9 @@ export default {
     }
   },
   methods: {
+    getLoadingAnimation() {
+      return localStorage.getItem("loadingAnimation") === "true"
+    },
     beforeAvatarUpload(file) {
       const isJpgOrPng = (file.type === 'image/jpeg' || file.type === 'image/png');
       const isLt2M = file.size / 1024 / 1024 < 5;
@@ -206,6 +221,9 @@ export default {
     },
     gradient() {
       localStorage.setItem("gradient", this.gradient)
+    },
+    loadingAnimation() {
+      localStorage.setItem("loadingAnimation", this.loadingAnimation)
     }
 
   },

@@ -2,7 +2,7 @@
   <div :style="{fontSize:font_size,fontFamily:font_family}" :class="{darkTheme:darkTheme}" style="height: 100%">
     <loading-global v-if="showLoading"></loading-global>
     <router-view></router-view>
-    <right-click/>
+    <right-click />
   </div>
 </template>
 
@@ -19,10 +19,13 @@ export default {
       darkTheme: "",
       font_size: this.getFontSize(),
       font_family: this.getfontFamily(),
-      showLoading: true
+      showLoading: this.getLoadingAnimation()
     }
   },
   methods: {
+    getLoadingAnimation(){
+      return localStorage.getItem("loadingAnimation") === "true"
+    },
     changeTheme() {
       this.$bus.$emit("darkTheme", this.darkTheme)
     },
@@ -104,13 +107,16 @@ export default {
       localStorage.setItem("ThemeBackGround", "solidColor")
     }
     if (!localStorage.getItem("imgSrc")) {
-      localStorage.setItem("imgSrc", "https://s1.ax1x.com/2022/06/19/XjgCGV.jpg")
+      localStorage.setItem("imgSrc", "https://img.bugjava.cn/mt.php")
     }
     if (!localStorage.getItem("gradient")) {
       localStorage.setItem("gradient", "false")
     }
     if (!localStorage.getItem("hitokotoClass")) {
       localStorage.setItem("hitokotoClass", "hitokoto")
+    }
+    if (!localStorage.getItem("loadingAnimation")) {
+      localStorage.setItem("loadingAnimation", "true")
     }
     if (!localStorage.getItem("font_style")) {
       localStorage.setItem("font_style", JSON.stringify({

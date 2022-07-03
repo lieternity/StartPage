@@ -23,6 +23,7 @@
         <div>浏览器：{{ bowserName.browserName }}</div>
         <div>版本：{{ bowserName.browserVersion }}</div>
         <div>系统：{{ bowserName.OSname }}</div>
+        <el-button @click="clearConfig" type="">清除配置信息</el-button>
       </el-collapse-item>
       <el-collapse-item title="版本信息 VersionInformation" name="2">
         <div>版本：{{ config.version }}</div>
@@ -126,6 +127,17 @@ export default {
   methods: {
     goToBin() {
       top.location.href = 'https://bin.bugjava.cn'
+    },
+    clearConfig(){
+      localStorage.clear()
+      this.$message({
+        type:"success",
+        message:"配置文件清除成功！！！",
+        duration:1000,
+        onClose:()=>{
+          window.location.reload()
+        }
+      })
     }
   },
   computed: {
