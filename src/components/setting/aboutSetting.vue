@@ -59,46 +59,58 @@
         <el-timeline-item timestamp="2022/7/3" placement="top">
           <el-card>
             <h4>美化右键菜单</h4>
-            <dt>功能：</dt>
-            <dd>让右键菜单好看点</dd>
+            <dl>
+              <dt>功能：</dt>
+              <dd>让右键菜单好看点</dd>
+            </dl>
           </el-card>
         </el-timeline-item>
         <el-timeline-item timestamp="2022/7/2" placement="top">
           <el-card>
             <h4>新增载入页面动画</h4>
-            <dt>功能：</dt>
-            <dd>在页面没有完全加载完成前，显示动画</dd>
+            <dl>
+              <dt>功能：</dt>
+              <dd>在页面没有完全加载完成前，显示动画</dd>
+            </dl>
           </el-card>
         </el-timeline-item>
         <el-timeline-item timestamp="2022/7/1" placement="top">
           <el-card>
             <h4>新增快捷导航</h4>
-            <dt>功能：</dt>
-            <dd>用户可以快速进入自己常用的网站</dd>
+            <dl>
+              <dt>功能：</dt>
+              <dd>用户可以快速进入自己常用的网站</dd>
+            </dl>
           </el-card>
         </el-timeline-item>
         <el-timeline-item timestamp="2022/6/23" placement="top">
           <el-card>
             <h4>新增自定义字体</h4>
-            <dt>功能：</dt>
-            <dd>用户可以自主切换网站的默认字体样式和大小</dd>
+            <dl>
+              <dt>功能：</dt>
+              <dd>用户可以自主切换网站的默认字体样式和大小</dd>
+            </dl>
           </el-card>
         </el-timeline-item>
         <el-timeline-item timestamp="2022/6/21" placement="top">
           <el-card>
             <h4>网站整体完成</h4>
-            <dt>功能：</dt>
-            <dd>用户设置云同步，自定义背景（本地视频，在线图片&lt;需要搭配 <a target="_blank"
-                                                   href="https://www.baidu.com/s?word=%E5%9B%BE%E5%BA%8A">图床</a> &gt;），自定义头像
-              等...
-            </dd>
+            <dl>
+              <dt>功能：</dt>
+              <dd>用户设置云同步，自定义背景（本地视频，在线图片&lt;需要搭配 <a target="_blank"
+                                                     href="https://www.baidu.com/s?word=%E5%9B%BE%E5%BA%8A">图床</a> &gt;），自定义头像
+                等...
+              </dd>
+            </dl>
           </el-card>
         </el-timeline-item>
         <el-timeline-item timestamp="2022/6/20" placement="top">
           <el-card>
             <h4>网站大体完成</h4>
-            <dt>功能：</dt>
-            <dd>自以为好看</dd>
+            <dl>
+              <dt>功能：</dt>
+              <dd>自以为好看</dd>
+            </dl>
           </el-card>
         </el-timeline-item>
         <el-timeline-item timestamp="2022/6/18" placement="top">
@@ -128,13 +140,13 @@ export default {
     goToBin() {
       top.location.href = 'https://bin.bugjava.cn'
     },
-    clearConfig(){
+    clearConfig() {
       localStorage.clear()
       this.$message({
-        type:"success",
-        message:"配置文件清除成功！！！",
-        duration:1000,
-        onClose:()=>{
+        type: "success",
+        message: "配置文件清除成功！！！",
+        duration: 1000,
+        onClose: () => {
           window.location.reload()
         }
       })
