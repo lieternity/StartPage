@@ -66,7 +66,6 @@ export default {
   overflow: hidden;
   height: 100%;
   width: 20%;
-  border-right: #cbcbcc solid 1px;
 }
 
 .navigationList {
