@@ -6,6 +6,15 @@
           <use xlink:href="#icon-close"></use>
         </svg>
         <div class="appList">
+          <h3 v-show="otherApps.length === 0">Customize</h3>
+          <p v-show="otherApps.length === 0">无</p>
+          <button v-show="otherApps.length === 0"
+                  v-for="app in otherApps"
+                  class="custom-btn btn"
+                  @click="jump(app.link)"
+                  :key="app.id">
+            {{ app.name }}
+          </button>
           <h3>个人网站</h3>
           <button v-for="app in personalWebsite" class="custom-btn btn" @click="jump(app.link)" :key="app.id">
             {{ app.name }}
@@ -18,11 +27,7 @@
           <button v-for="app in devApps" class="custom-btn btn" @click="jump(app.link)" :key="app.id">
             {{ app.name }}
           </button>
-          <h3>其他</h3>
-          <p v-show="otherApps.length === 0">无</p>
-          <button v-for="app in otherApps" class="custom-btn btn" @click="jump(app.link)" :key="app.id">
-            {{ app.name }}
-          </button>
+
         </div>
       </div>
     </transition>
@@ -146,9 +151,9 @@ export default {
   beforeMount() {
     if (!localStorage.getItem("develop")) {
       localStorage.setItem("develop", "")
-    }else{
+    } else {
       let appsArr = localStorage.getItem("develop").split("#");
-      for (let i = 0; i < appsArr.length-1; i++) {
+      for (let i = 0; i < appsArr.length - 1; i++) {
         let parse = JSON.parse(appsArr[i]);
         this.otherApps.push(parse)
       }
@@ -174,7 +179,7 @@ export default {
 }
 
 .appsList::-webkit-scrollbar {
-  display:none
+  display: none
 }
 
 .icon {
