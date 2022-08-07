@@ -6,9 +6,8 @@
           <use xlink:href="#icon-close"></use>
         </svg>
         <div class="appList">
-          <h3 v-show="otherApps.length === 0">Customize</h3>
-          <p v-show="otherApps.length === 0">无</p>
-          <button v-show="otherApps.length === 0"
+          <h3 v-show="otherApps.length !== 0">Customize</h3>
+          <button v-show="otherApps.length !== 0"
                   v-for="app in otherApps"
                   class="custom-btn btn"
                   @click="jump(app.link)"

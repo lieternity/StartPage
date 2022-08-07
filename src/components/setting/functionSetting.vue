@@ -163,7 +163,7 @@ export default {
       this.$prompt('自定义网站  例：百度#https://baidu.com', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
-        inputPattern: /.*?#.*?/,
+        inputPattern: /.*?#http.*?/,
         inputErrorMessage: '格式不正确'
       }).then(({value}) => {
         let oldValue = localStorage.getItem("develop");
@@ -180,8 +180,8 @@ export default {
       }).catch((err) => {
         console.error(err)
         this.$message({
-          type: 'info',
-          message: err
+          type: 'error',
+          message: "添加出错！！！"
         });
       });
     },
