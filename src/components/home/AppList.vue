@@ -26,7 +26,10 @@
           <button v-for="app in devApps" class="custom-btn btn" @click="jump(app.link)" :key="app.id">
             {{ app.name }}
           </button>
-
+          <h3>云开发</h3>
+          <button v-for="app in yunDevs" class="custom-btn btn" @click="jump(app.link)" :key="app.id">
+            {{ app.name }}
+          </button>
         </div>
       </div>
     </transition>
@@ -130,6 +133,28 @@ export default {
         }
 
 
+      ],
+      yunDevs: [
+        {
+          id: 301,
+          name: "腾讯云",
+          link: "https://cloud.tencent.com/"
+        },
+        {
+          id: 302,
+          name: "阿里云",
+          link: "https://www.aliyun.com/"
+        },
+        {
+          id: 303,
+          name: "百度云",
+          link: "https://cloud.baidu.com/"
+        },
+        {
+          id: 304,
+          name: "华为云",
+          link: "https://www.huaweicloud.com/"
+        }
       ],
       otherApps: []
     }
