@@ -42,35 +42,7 @@ export default {
     TimeBox,
     BackGround,
     buttonList
-  },
-  mounted() {
-    var WIDGET = {
-      "CONFIG": {
-        "modules": "01234",
-        "background": "2",
-        "tmpColor": "000000",
-        "tmpSize": "16",
-        "cityColor": "000000",
-        "citySize": "16",
-        "aqiColor": "000000",
-        "aqiSize": "16",
-        "weatherIconSize": "24",
-        "alertIconSize": "18",
-        "padding": "10px 10px 10px 10px",
-        "shadow": "0",
-        "language": "auto",
-        "borderRadius": "5",
-        "fixed": "true",
-        "vertical": "left",
-        "horizontal": "left",
-        "left": "10",
-        "bottom": "10",
-        "key": "242a42e3e84d4d0cb7adeaab8b2a3bef"
-      }
-    }
-    console.log(WIDGET)
   }
-
 }
 </script>
 
