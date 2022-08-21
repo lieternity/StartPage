@@ -9,7 +9,7 @@ module.exports = defineConfig({
         workboxOptions: {
             skipWaiting: true,
             clientsClaim: true,
-            navigateFallback: '/index.js.html',
+            navigateFallback: '/index.html',
             exclude: [/\.(?:map)$/],
         },
     },
