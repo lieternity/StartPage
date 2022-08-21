@@ -56,6 +56,15 @@
     </el-collapse>
     <div class="block">
       <el-timeline class="Timeline">
+        <el-timeline-item timestamp="2022/8/21" placement="top">
+          <el-card>
+            <h4>云同步配置</h4>
+            <dl>
+              <dt>功能：</dt>
+              <dd>登陆账号可以上传和同步配置文件</dd>
+            </dl>
+          </el-card>
+        </el-timeline-item>
         <el-timeline-item timestamp="2022/7/3" placement="top">
           <el-card>
             <h4>美化右键菜单</h4>
@@ -98,7 +107,8 @@
             <dl>
               <dt>功能：</dt>
               <dd>用户设置云同步，自定义背景（本地视频，在线图片&lt;需要搭配 <a target="_blank"
-                                                     href="https://www.baidu.com/s?word=%E5%9B%BE%E5%BA%8A">图床</a> &gt;），自定义头像
+                                                                             href="https://www.baidu.com/s?word=%E5%9B%BE%E5%BA%8A">图床</a>
+                &gt;），自定义头像
                 等...
               </dd>
             </dl>
