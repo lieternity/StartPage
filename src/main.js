@@ -10,6 +10,7 @@ import elementui from './elementui'
 Vue.use(VueRouter)
 Vue.use(vueResource)
 
+
 Vue.config.productionTip = false
 
 new Vue({

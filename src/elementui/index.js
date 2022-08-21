@@ -22,10 +22,12 @@ import {
     Divider,
     Slider,
     MessageBox,
-    Message
+    Message,
+    Link
 } from 'element-ui';
 
 Vue.use(Card)
+Vue.use(Link)
 Vue.use(Divider)
 Vue.use(Slider)
 Vue.use(Backtop)

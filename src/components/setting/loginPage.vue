@@ -68,6 +68,9 @@ export default {
       }
     }
     return {
+      userInfo: {
+        uid: "", passwd: ""
+      },
       ruleForm: {
         user: "",
         pass: "",
@@ -95,14 +98,57 @@ export default {
             }
           }).then((res) => {
             if (res.data.code === 200) {
-              localStorage.setItem("user", JSON.stringify(res.data.result))
+              var result = JSON.stringify(res.data.result)
+              localStorage.setItem("user", result)
+              this.userInfo.uid = res.data.result.uid;
+              this.userInfo.passwd = res.data.result.passwd
               Message({
                 showClose: true,
                 message: '登陆成功',
                 type: 'success',
                 duration: 1000,
                 onClose: () => {
-                  this.$router.replace("/setting/user").catch(()=>{})
+                  this.$axios({
+                    method: "get",
+                    url: process.env.VUE_APP_SERVE + "/api/syncConfig",
+                    params: {
+                      user: this.userInfo.uid,
+                      passwd: this.userInfo.passwd
+                    }
+                  }).then((req) => {
+                    if (req.data.code === 200) {
+                      this.syncConfig = false;
+                      let configarr = (req.data.config).split("^");
+                      console.log(configarr)
+                      for (let i = 0; i < configarr.length; i++) {
+                        localStorage.setItem(configarr[i], configarr[i + 1])
+                        i++
+                      }
+                      Message({
+                        showClose: true,
+                        message: '同步成功',
+                        type: 'success',
+                        duration: "1000",
+                        onClose() {
+                          window.location.reload();
+                        }
+                      });
+                    } else {
+                      Message({
+                        showClose: true,
+                        message: '同步失败',
+                        type: 'warning'
+                      });
+                    }
+                  }).catch((err) => {
+                    Message({
+                      showClose: true,
+                      message: err,
+                      type: 'warning'
+                    });
+                  })
+                  this.$router.replace("/setting/user").catch(() => {
+                  })
                 }
               });
             } else if (res.data.code === 403) {
