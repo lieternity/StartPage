@@ -88,10 +88,7 @@ export default {
       fontFamily: this.getfontFamily(),
       fontStyleList: [
         {
-          value: '"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;',
-          label: 'defaultFont'
-        }, {
-          value: '',
+          value: 'PingFang',
           label: '默认字体'
         }, {
           value: 'font_pr1',

@@ -5,7 +5,7 @@ import VueRouter from 'vue-router'
 import router from './router'
 import axios from 'axios'
 import './registerServiceWorker'
-import elementui from './elementui'
+import './elementui'
 
 Vue.use(VueRouter)
 Vue.use(vueResource)
@@ -14,9 +14,7 @@ Vue.use(vueResource)
 Vue.config.productionTip = false
 
 new Vue({
-    el: '#app',
-    elementui,
-    render: h => h(App),
+    el: '#app', render: h => h(App),
     router: router,
     beforeCreate() {
         Vue.prototype.$bus = this;

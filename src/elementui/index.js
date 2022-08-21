@@ -52,3 +52,4 @@ Vue.use(Autocomplete)
 
 Vue.prototype.$prompt = MessageBox.prompt
 Vue.prototype.$message = Message
+

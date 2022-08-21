@@ -121,7 +121,7 @@ export default {
     if (!localStorage.getItem("font_style")) {
       localStorage.setItem("font_style", JSON.stringify({
         fontSize: 16,
-        fontFamily: '"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;'
+        fontFamily: 'PingFang'
       }))
     }
   },
@@ -140,7 +140,7 @@ body {
   height: 100%;
   overflow: hidden;
   margin: 0;
-  background-color: #ffffff;
+  background-color: #fff;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -161,6 +161,14 @@ body {
 
 .darkTheme {
   filter: invert(.9) hue-rotate(.5turn);
+}
+
+@font-face {
+  font-family: PingFang;
+  src: url(/public/static/Fonts-main/PingFang.woff2);
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
 }
 
 @font-face {
