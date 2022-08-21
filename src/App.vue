@@ -165,7 +165,7 @@ body {
 
 @font-face {
   font-family: PingFang;
-  src: url(/public/static/Fonts-main/PingFang.woff2);
+  src: url("https://raw.iqiq.io/acodegod/pic-cdn/main/2022/06/22/PingFang.woff2");
   font-style: normal;
   font-weight: 500;
   font-display: swap;
