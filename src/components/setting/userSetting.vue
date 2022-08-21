@@ -323,7 +323,6 @@ export default {
         if (req.data.code === 200) {
           this.syncConfig = false;
           let configarr = (req.data.config).split("^");
-          console.log(configarr)
           for (let i = 0; i < configarr.length; i++) {
             localStorage.setItem(configarr[i], configarr[i + 1])
             i++
