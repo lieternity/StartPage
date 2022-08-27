@@ -200,6 +200,7 @@ export default {
   overflow: scroll;
   overflow-style: auto;
   overflow-x: hidden;
+  text-shadow: 0 0 20px rgb(0 0 0 / 80%);
 }
 
 .appsList::-webkit-scrollbar {

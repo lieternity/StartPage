@@ -1,5 +1,5 @@
 <template>
-  <div :style="{fontSize:font_size,fontFamily:font_family}" :class="{darkTheme:darkTheme}" style="height: 100%">
+  <div :style="{fontSize:font_size + ' !important',fontFamily:font_family+ ' !important'}" :class="{darkTheme:darkTheme}" style="height: 100%">
     <loading-global v-if="showLoading"></loading-global>
     <router-view></router-view>
     <right-click/>
