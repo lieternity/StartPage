@@ -76,6 +76,10 @@ export default {
       restaurants: [],
       hitokotoClasss: [
         {
+          value: "close",
+          label: "关闭"
+        },
+        {
           value: "hitokoto",
           label: "一言"
         },
@@ -228,6 +232,10 @@ export default {
     },
     fontFamily(newValue) {
       this.$bus.$emit("giveFontFamily", newValue)
+    },
+    hitokotoClass(newValue) {
+      console.log(newValue)
+      localStorage.setItem("hitokotoClass", newValue)
     }
   },
   mounted() {
