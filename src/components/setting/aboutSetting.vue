@@ -56,6 +56,15 @@
     </el-collapse>
     <div class="block">
       <el-timeline class="Timeline">
+        <el-timeline-item timestamp="2022/9/3" placement="top">
+          <el-card>
+            <h4>添加诗词API，更换全局页面加载动画</h4>
+            <dl>
+              <dt>功能：</dt>
+              <dd>在设置里面的一言接口选择诗词</dd>
+            </dl>
+          </el-card>
+        </el-timeline-item>
         <el-timeline-item timestamp="2022/8/21" placement="top">
           <el-card>
             <h4>云同步配置</h4>
