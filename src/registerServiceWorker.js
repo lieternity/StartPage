@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === 'production') {
             if (localStorage.getItem("firstTime") !== "true") {
                 localStorage.setItem("firstTime", "true")
                 Message({
-                    message: '欢迎使用包子起始页',
+                    message: '欢迎使用包子起始页!',
                     type: 'success'
                 })
             } else {
