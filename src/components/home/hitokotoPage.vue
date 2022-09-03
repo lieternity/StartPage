@@ -67,14 +67,15 @@ export default {
   height: 100px;
   text-align: center;
   line-height: 100px;
-  transition: all 0.3s;
+  transition: all 0.5s;
   /*z-index: -1;*/
   /*background-color: green;*/
   /*filter: blur(10px);*/
 
 }
-.hitokotoRoot:hover{
-  backdrop-filter: blur(15px);
+
+.hitokotoRoot:hover {
+  backdrop-filter: blur(30px) !important;
 }
 
 .hitokotoFont {
