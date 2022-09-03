@@ -6,7 +6,8 @@
     </div>
     <div v-show="yiyantext" v-if="type === 'poetry'">
       <span class="hitokotoFont" :class="{isSolidColor:SolidColor}">「 {{ msg.content }} 」</span>
-      <span class="hitokotoFont" :class="{isSolidColor:SolidColor}"
+      <span v-show="msg.author !== void 0 && msg.origin !== void 0" class="hitokotoFont"
+            :class="{isSolidColor:SolidColor}"
             style="position: relative;top: 20px;font-size:calc(1em - 5px) ">
         <span>{{ msg.author }}</span>---<span>{{ msg.origin }}</span>
       </span>
@@ -54,7 +55,8 @@ export default {
         this.msg = res.data
         this.yiyantext = true
       }).catch(() => {
-        this.msg = "你点击的太快了！！！"
+        this.msg.content = "你点击的太快了！！！"
+        this.msg.author = void 0
         this.yiyantext = true
       })
     },
@@ -97,7 +99,8 @@ export default {
   /*background-color: green;*/
   /*filter: blur(10px);*/
 }
-.blurred{
+
+.blurred {
   z-index: -1;
   position: absolute;
   width: 100%;
