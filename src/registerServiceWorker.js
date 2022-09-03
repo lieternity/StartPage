@@ -7,7 +7,6 @@ import {
 } from 'element-ui'
 
 if (process.env.NODE_ENV === 'production') {
-    console.log(process.env.NODE_ENV)
     register(`${process.env.BASE_URL}service-worker.js`, {
         registered() {
             console.log('Service worker has been registered.')
@@ -17,15 +16,19 @@ if (process.env.NODE_ENV === 'production') {
         },
         updatefound() {
             if (localStorage.getItem("firstTime") !== "true") {
-                return
+                Message({
+                    message: '欢迎使用包子起始页',
+                    type: 'success'
+                })
             } else {
+                Message({
+                    message: '检测到新版本，正在下载',
+                    type: 'info'
+                })
+                console.log('New content is downloading.')
                 localStorage.setItem("firstTime", "true")
             }
-            Message({
-                message: '检测到新版本，正在下载',
-                type: 'info'
-            })
-            console.log('New content is downloading.')
+
         },
         updated() {
             MessageBox({
