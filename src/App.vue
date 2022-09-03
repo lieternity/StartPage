@@ -65,39 +65,6 @@ export default {
       localStorage.setItem("font_style", JSON.stringify(font_style))
     })
     console.log('\n' + ' %c 包子起始页 %c https://search.bugjava.cn ' + '\n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;');
-    if (localStorage.getItem("ThemeColor") === "followTheSystem") {
-      if (window.matchMedia('(prefers-color-scheme)').media === 'not all') {
-        console.log('Browser doesn\'t support dark mode');
-      }
-
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        this.darkTheme = true
-        this.changeTheme()
-      }
-      var listeners = {
-        dark: (mediaQueryList) => {
-          if (mediaQueryList.matches) {
-            this.darkTheme = true
-            this.changeTheme()
-          }
-        },
-        light: (mediaQueryList) => {
-          if (mediaQueryList.matches) {
-            this.darkTheme = false
-            this.changeTheme()
-          }
-        }
-      }
-
-      window.matchMedia('(prefers-color-scheme: dark)').addListener(listeners.dark)
-      window.matchMedia('(prefers-color-scheme: light)').addListener(listeners.light)
-    } else if (localStorage.getItem("ThemeColor") === "darkTheme") {
-      this.darkTheme = true
-      this.changeTheme()
-    } else {
-      this.darkTheme = false
-      this.changeTheme()
-    }
   },
   beforeCreate() {
     if (!localStorage.getItem("ThemeColor")) {
