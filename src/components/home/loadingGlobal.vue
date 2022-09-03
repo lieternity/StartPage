@@ -1,6 +1,6 @@
 <template>
   <div class="loadRoot">
-    <div class="loader">
+    <div class="loader1">
       <div></div>
       <div></div>
       <div></div>
@@ -35,14 +35,14 @@ export default {
   background-color: #FFFFFF;
 }
 
-.loader {
+.loader1 {
   width: 200px;
   height: 200px;
   /* 相对定位 */
   position: relative;
 }
 
-.loader div {
+.loader1 div {
   border-width: 5px;
   border-style: solid;
   border-left-color: #fff;
@@ -57,14 +57,14 @@ export default {
 }
 
 /* 为每一个圆环设置大小、定位、动画延迟时间 */
-.loader div:nth-child(1) {
+.loader1 div:nth-child(1) {
   width: 50px;
   height: 50px;
   left: 70px;
   top: 70px;
 }
 
-.loader div:nth-child(2) {
+.loader1 div:nth-child(2) {
   width: 70px;
   height: 70px;
   left: 60px;
@@ -73,7 +73,7 @@ export default {
   animation-delay: 0.1s;
 }
 
-.loader div:nth-child(3) {
+.loader1 div:nth-child(3) {
   width: 90px;
   height: 90px;
   left: 50px;
@@ -81,7 +81,7 @@ export default {
   animation-delay: 0.2s;
 }
 
-.loader div:nth-child(4) {
+.loader1 div:nth-child(4) {
   width: 110px;
   height: 110px;
   left: 40px;
