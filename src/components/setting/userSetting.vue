@@ -276,6 +276,7 @@ export default {
       var item;
       for (let i = 0; i < localStorage.length; i++) {
         item = localStorage.key(i);
+        if (item === "user")continue;
         this.localStorageArray.push([item], [localStorage.getItem(item)]);
       }
       this.$axios({
