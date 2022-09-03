@@ -45,8 +45,8 @@ export default {
 .loader1 div {
   border-width: 5px;
   border-style: solid;
-  border-left-color: #fff;
-  border-right-color: #fff;
+  border-left-color: #4285F4;
+  border-right-color: #4285F4;
   border-top-color: transparent;
   border-bottom-color: transparent;
   border-radius: 50%;
