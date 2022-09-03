@@ -16,6 +16,7 @@ if (process.env.NODE_ENV === 'production') {
         },
         updatefound() {
             if (localStorage.getItem("firstTime") !== "true") {
+                localStorage.setItem("firstTime", "true")
                 Message({
                     message: '欢迎使用包子起始页',
                     type: 'success'
@@ -26,7 +27,6 @@ if (process.env.NODE_ENV === 'production') {
                     type: 'info'
                 })
                 console.log('New content is downloading.')
-                localStorage.setItem("firstTime", "true")
             }
 
         },
