@@ -1,5 +1,5 @@
 <template>
-  <div :class="{gradient:gradient}" class="homePage">
+  <div @click.prevent.stop="closeSomeThing" :class="{gradient:gradient}" class="homePage">
     <BackGround/>
     <time-box/>
     <search-box/>
@@ -31,6 +31,10 @@ export default {
   methods: {
     getGradient() {
       return localStorage.getItem("gradient") === "true"
+    },
+    closeSomeThing(){
+      this.$bus.$emit("changeAppListShow",false)
+      this.$bus.$emit("changeUserMenu",false)
     }
   },
   components: {

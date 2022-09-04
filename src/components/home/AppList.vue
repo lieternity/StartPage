@@ -168,8 +168,12 @@ export default {
     }
   },
   mounted() {
-    this.$bus.$on("changeAppListShow", () => {
-      this.appListShow = !this.appListShow
+    this.$bus.$on("changeAppListShow", (value) => {
+      if (value !== undefined){
+        this.appListShow=value
+      }else{
+        this.appListShow = !this.appListShow
+      }
     })
   },
   beforeMount() {

@@ -51,7 +51,6 @@ export default {
         method: "get",
         url: url
       }).then((res) => {
-        console.log(res.data)
         this.msg = res.data
         this.yiyantext = true
       }).catch(() => {

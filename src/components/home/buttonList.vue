@@ -1,11 +1,11 @@
 <template>
   <div class="buttonList">
-    <div class="appIcon" @click="showAppList">
+    <div class="appIcon" @click.stop="showAppList">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-app"></use>
       </svg>
     </div>
-    <div class="userIcon" @click="userMenuShow($event)">
+    <div class="userIcon" @click.stop="userMenuShow($event)">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-user"></use>
       </svg>
@@ -15,7 +15,7 @@
         <use xlink:href="#icon-setting-filling"></use>
       </svg>
     </router-link>
-    <div v-show="userMenu" @click="userMenuClick($event)" class="userMenu"
+    <div v-show="userMenu" @click.stop="userMenuClick($event)" class="userMenu"
          :style="{'top':top + 'px','left':left+ 'px'}">
       <div class="account">账号管理</div>
       <div class="quit">退出登录</div>
@@ -35,6 +35,15 @@ export default {
       left: 0
     }
   },
+  mounted() {
+    this.$bus.$on("changeUserMenu", (value) => {
+      if (value !== undefined){
+        this.userMenu=value
+      }else{
+        this.userMenu = !this.userMenu
+      }
+    })
+    },
   methods: {
     showAppList() {
       this.$bus.$emit("changeAppListShow")
