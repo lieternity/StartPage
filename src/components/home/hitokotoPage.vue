@@ -104,11 +104,13 @@ export default {
   position: absolute;
   width: 100%;
   height: 100%;
+  backdrop-filter: blur(30px) !important;
+  opacity: 0;
   transition: all 0.5s !important;
 }
 
 .hitokotoRoot:hover > .blurred {
-  backdrop-filter: blur(30px) !important;
+  opacity: 1;
 }
 
 .hitokotoFont {

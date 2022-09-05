@@ -205,11 +205,13 @@ export default {
   overflow-style: auto;
   overflow-x: hidden;
   text-shadow: 0 0 20px rgb(0 0 0 / 80%);
+  scrollbar-width: none;
 }
 
 .appsList::-webkit-scrollbar {
   display: none
 }
+
 
 .icon {
   position: fixed;
