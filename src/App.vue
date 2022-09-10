@@ -1,5 +1,6 @@
 <template>
-  <div :style="{fontSize:font_size + ' !important',fontFamily:font_family+ ' !important'}" :class="{darkTheme:darkTheme}" style="height: 100%">
+  <div :style="{fontSize:font_size + ' !important',fontFamily:font_family+ ' !important'}"
+       :class="{darkTheme:darkTheme}" style="height: 100%">
     <loading-global v-if="showLoading"></loading-global>
     <router-view></router-view>
     <right-click/>
@@ -52,6 +53,8 @@ export default {
     }
   },
   mounted() {
+    var wave = localStorage.getItem("wave");
+    if (wave === "false") document.getElementsByTagName("baozi")[0].style.display = "none";
     this.$bus.$on("giveFontSize", (value) => {
       this.font_size = value + 'px'
       let font_style = JSON.parse(localStorage.getItem("font_style"));
@@ -84,6 +87,9 @@ export default {
     }
     if (!localStorage.getItem("loadingAnimation")) {
       localStorage.setItem("loadingAnimation", "true")
+    }
+    if (!localStorage.getItem("wave")) {
+      localStorage.setItem("wave", "true")
     }
     if (!localStorage.getItem("font_style")) {
       localStorage.setItem("font_style", JSON.stringify({

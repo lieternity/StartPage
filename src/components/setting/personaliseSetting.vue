@@ -59,17 +59,33 @@
         </el-option>
       </el-select>
     </div>
+    <!--    <div class="controlCard">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-huaban"></use>
+          </svg>
+          <span>主题</span>
+          <el-select v-model="themeColor" class="themeColor" placeholder="请选择">
+            <el-option
+                v-for="item in themeColors"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+            </el-option>
+          </el-select>
+        </div>-->
     <div class="controlCard">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-huaban"></use>
       </svg>
-      <span>主题</span>
-      <el-select v-model="themeColor" class="themeColor" placeholder="请选择">
+      <span>页面底部波浪</span>
+      <el-select v-model="wave" class="themeColor" placeholder="请选择">
         <el-option
-            v-for="item in themeColors"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
+            label="开启"
+            value="true">
+        </el-option>
+        <el-option
+            label="关闭"
+            value="false">
         </el-option>
       </el-select>
     </div>
@@ -84,6 +100,7 @@ export default {
   name: "personaliseSetting",
   data() {
     return {
+      wave: "",
       loadingAnimation: this.getLoadingAnimation(),
       themeBackGrounds: [{
         value: 'solidColor',
@@ -224,8 +241,14 @@ export default {
     },
     loadingAnimation() {
       localStorage.setItem("loadingAnimation", this.loadingAnimation)
+    },
+    wave(newValue){
+     localStorage.setItem("wave",newValue)
     }
 
+  },
+  beforeMount() {
+    this.wave = localStorage.getItem("wave")
   },
 
   components: {BackGround}
