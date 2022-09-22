@@ -8,6 +8,7 @@ import aboutSetting from "@/components/setting/aboutSetting";
 import loginPage from "@/components/setting/loginPage";
 import registerPage from "@/components/setting/registerPage"
 import functionSetting from "@/components/setting/functionSetting";
+import page404 from "@/pages/404"
 
 const router = new VueRouter({
     mode: "history",
@@ -83,7 +84,15 @@ const router = new VueRouter({
                     }
                 },
             ]
-        }
+        },
+        {
+            path: '*',
+            component:page404,
+            meta: {
+                title: "404-包子起始页"
+            }
+
+        },
     ]
 })
 router.beforeEach((to, from, next) => {
