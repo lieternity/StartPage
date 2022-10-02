@@ -8,6 +8,10 @@
 
 <script>
 
+import {
+  MessageBox
+} from 'element-ui'
+
 export default {
   name: "backGround",
   data() {
@@ -23,6 +27,28 @@ export default {
     }
   },
   methods: {
+    getImgFile() {
+      this.$bus.$emit("loadpage",true)
+      let vmthis = this
+      let url = "https://raw.githubusercontent.com/acodegod/pic-cdn/main/2022/ikun.mp4"
+      console.log(url)
+      var xhr = new XMLHttpRequest(),
+          blob;
+
+      xhr.open("GET", url, true);
+      // Set the responseType to blob
+      xhr.responseType = "blob";
+
+      xhr.addEventListener("load", function () {
+        if (xhr.status === 200) {
+          blob = xhr.response;
+          console.log(blob);
+          vmthis.putImageInDb(blob)
+
+        }
+      }, false);
+      xhr.send();
+    },
     getType() {
       return localStorage.getItem("ThemeBackGround")
     },
@@ -53,6 +79,17 @@ export default {
           let blob = event.target.result
           if (blob) {
             vsthis.$data.mainBackground.videoSrc = window.URL.createObjectURL(blob)
+          } else {
+            MessageBox({
+              title: '提示',
+              message: '您还未上传视频，正在下载默认视频',
+              confirmButtonText: '确定',
+              showClose: false,
+              type: 'warning',
+              callback() {
+                vsthis.getImgFile()
+              }
+            })
           }
         }
       }

@@ -176,7 +176,7 @@ export default {
         console.log(`resultFile`, resultFile);
         if (resultFile.length) {
           const aBlob = new Blob([resultFile[0]], {type: 'video/mp4'});
-          console.log(this)
+          console.log(aBlob)
           this.$bus.$emit("getBlob", aBlob)
         } else {
           console.log("上传失败");
