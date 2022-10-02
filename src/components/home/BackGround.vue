@@ -30,7 +30,7 @@ export default {
     getImgFile() {
       this.$bus.$emit("loadpage",true)
       let vmthis = this
-      let url = "https://raw.githubusercontent.com/acodegod/pic-cdn/main/2022/ikun.mp4"
+      let url = "https://jsd.eagleyao.com/gh/acodegod/pic-cdn@main/2022/ikun.mp4"
       console.log(url)
       var xhr = new XMLHttpRequest(),
           blob;
@@ -59,7 +59,9 @@ export default {
       var transaction = this.mainBackground.DB.transaction(['VideoImages'], 'readwrite');
       var put = transaction.objectStore('VideoImages').put(blob, "default");
       // put.onsuccess = () => window.location.reload();
-      put.onsuccess = () => alert("视频上传成功，刷新一下试试？");
+      put.onsuccess = () => {
+        setTimeout(function (){window.location.reload()},10)
+      };
     },
     getImageRequest() {
       var vsthis = this
@@ -79,7 +81,7 @@ export default {
           let blob = event.target.result
           if (blob) {
             vsthis.$data.mainBackground.videoSrc = window.URL.createObjectURL(blob)
-          } else {
+          } else if(vsthis.mainBackground.type === 'video'){
             MessageBox({
               title: '提示',
               message: '您还未上传视频，正在下载默认视频',
