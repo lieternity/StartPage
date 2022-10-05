@@ -16,7 +16,7 @@
 </template>
 
 <script>
-
+import jQuery from "jquery";
 export default {
   name: "searchList",
   data() {
@@ -33,8 +33,7 @@ export default {
     removeActive($event) {
       $event.currentTarget.className = '';
     }
-  }
-  ,
+  },
   mounted() {
     this.$bus.$on("getCandidates", (value) => {
       if (value === "") {
@@ -56,6 +55,29 @@ export default {
         });
       }
     })
+  },
+  beforeMount() {
+    jQuery(document).keydown(function(event) {
+    var $active;
+    if (event.keyCode == 40) {
+      $active = jQuery(".searchCandidateBackground .active");
+      if ($active.length == 0 && jQuery(".searchCandidateBackground ul li").length > 0) {
+        jQuery(".searchCandidateBackground li:first-child").addClass("active");
+      } else {
+        $active.removeClass("active");
+        $active.next().addClass("active");
+      }
+    }
+    if (event.keyCode == 38) {
+      $active = jQuery(".searchCandidateBackground .active");
+      if ($active.length == 0 && jQuery(".searchCandidateBackground ul li").length > 0) {
+        jQuery(".searchCandidateBackground li:last-child").addClass("active");
+      } else {
+        $active.removeClass("active");
+        $active.prev().addClass("active");
+      }
+    }
+    });
   }
 }
 </script>

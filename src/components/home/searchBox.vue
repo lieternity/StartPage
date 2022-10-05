@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import jQuery from "jquery";
+
 export default {
   name: "searchBox",
   data() {
@@ -37,14 +39,18 @@ export default {
       return "#icon-" + this.searchDefault.type
     }
   },
-  watch:{
-    searchValue(){
+  watch: {
+    searchValue() {
       this.giveSearchListValue(this.searchValue)
     }
   },
   methods: {
     startSearch() {
-      top.location.href = this.searchDefault.action + "?" + this.searchDefault.name + "=" + this.searchValue
+      if (jQuery(".searchCandidateBackground .active").length === 1) {
+        top.location.href = this.searchDefault.action + "?" + this.searchDefault.name + "=" + jQuery(".searchCandidateBackground .active").text()
+      } else {
+        top.location.href = this.searchDefault.action + "?" + this.searchDefault.name + "=" + this.searchValue
+      }
     },
     changeSearchMenuShow(value = "") {
       this.$bus.$emit("searchMenuShowStatus", value)
