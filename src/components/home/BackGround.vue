@@ -30,7 +30,7 @@ export default {
     getImgFile() {
       this.$bus.$emit("loadpage",true)
       let vmthis = this
-      let url = "https://jsd.eagleyao.com/gh/acodegod/pic-cdn@main/2022/ikun.mp4"
+      let url = "https://jsd.cdn.zzko.cn/gh/acodegod/pic-cdn@main/2022/ikun.mp4"
       console.log(url)
       var xhr = new XMLHttpRequest(),
           blob;
