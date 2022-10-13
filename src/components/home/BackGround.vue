@@ -60,7 +60,7 @@ export default {
       var put = transaction.objectStore('VideoImages').put(blob, "default");
       // put.onsuccess = () => window.location.reload();
       put.onsuccess = () => {
-        setTimeout(function (){window.location.reload()},10)
+        setTimeout(function (){window.location.reload()},1000)
       };
     },
     getImageRequest() {
