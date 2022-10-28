@@ -21,6 +21,11 @@
       </el-upload>
 
     </el-card>
+    <el-switch
+        v-model="upimgurl"
+        active-text="GitHub图床"
+        inactive-text="smms图床">
+    </el-switch>
     <div class="userSettings">
       <el-button type="primary" round @click="changeInfo = true">修改用户名</el-button>
       <el-button type="info" round @click="uploadConfig = true">上传用户配置</el-button>
@@ -94,6 +99,7 @@ export default {
   name: "userSetting",
   data() {
     return {
+      upimgurl: "",
       userInfo: this.getCircleUrl(),
       changeInfo: false,
       deluser: false,
@@ -101,6 +107,20 @@ export default {
       uploadConfig: false,
       localStorageArray: []
     }
+  },
+  watch: {
+    upimgurl(value) {
+      localStorage.setItem("upimgurl", value)
+    }
+  },
+  mounted() {
+    Message({
+      showClose: true,
+      message: 'Github头像图床出问题了，暂时不可以使用',
+      type: 'warning',
+      duration: 3000,
+    });
+    this.upimgurl = JSON.parse(localStorage.getItem("upimgurl"))
   },
   methods: {
     signOut() {
@@ -139,25 +159,63 @@ export default {
       return isJpgOrPng && isLt2M;
     },
     upload(file) {
-      const formData = new FormData()
-      formData.append('pic', file.file)
+      if (this.upimgurl) {
+        const formData = new FormData()
+        formData.append('pic', file.file)
 
-      this.$axios.post(process.env.VUE_APP_UPLOAD, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
+        this.$axios.post(process.env.VUE_APP_UPLOAD, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          }
+        }, {
+          timeout: 30000
+        }).then(res => {
+          if (res.data.code === 'image_repeated') {
+            this.userInfo.avatar = res.data.images;
+            this.uploadAvatar(res.data.images)
+          } else {
+            this.userInfo.avatar = res.data.data.url;
+            this.uploadAvatar(res.data.data.url)
+          }
+        })
+      } else {
+        var that = this
+        var imgFile = new FileReader();
+        imgFile.readAsDataURL(file.file);
+        imgFile.onload = function () {
+          let imgData = this.result; //base64数据
+          that.$axios({
+            method: "post",
+            url: "https://twikoo.bugjava.cn/",
+            data: {
+              accessToken: "5f4bc17eb43a4457ad462dd5689a1875",
+              event: "UPLOAD_IMAGE",
+              fileName: file.file.name,
+              photo: imgData
+            }
+          }).then((data) => {
+            if (data.data.code === 1040) {
+              const reg = /(https?|http|ftp|file):\/\/[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]/g;
+              let str = data.data.err.match(reg);
+              if (str && str.length > 0) {
+                that.userInfo.avatar = str[0];
+                that.uploadAvatar(str[0])
+              }else{
+                Message({
+                  showClose: true,
+                  message: '上传失败',
+                  type: 'error',
+                  duration: 3000,
+                });
+              }
+            } else {
+              that.userInfo.avatar = data.data.data.url;
+              that.uploadAvatar(data.data.data.url)
+            }
+          })
         }
-      }, {
-        timeout: 30000
-      }).then(res => {
-        console.log(res.data)
-        if (res.data.code === 'image_repeated') {
-          this.userInfo.avatar = res.data.images;
-          this.uploadAvatar(res.data.images)
-        } else {
-          this.userInfo.avatar = res.data.data.url;
-          this.uploadAvatar(res.data.data.url)
-        }
-      })
+
+      }
     },
     uploadAvatar(newAvatar) {
       let user = JSON.parse(localStorage.getItem("user"));
@@ -276,7 +334,7 @@ export default {
       var item;
       for (let i = 0; i < localStorage.length; i++) {
         item = localStorage.key(i);
-        if (item === "user")continue;
+        if (item === "user") continue;
         this.localStorageArray.push([item], [localStorage.getItem(item)]);
       }
       this.$axios({

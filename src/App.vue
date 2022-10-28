@@ -96,7 +96,10 @@ export default {
       localStorage.setItem("loadingAnimation", "true")
     }
     if (!localStorage.getItem("wave")) {
-      localStorage.setItem("wave", "true")
+      localStorage.setItem("wave", "false")
+    }
+    if (!localStorage.getItem("upimgurl")) {
+      localStorage.setItem("upimgurl", "true")
     }
     if (!localStorage.getItem("font_style")) {
       localStorage.setItem("font_style", JSON.stringify({
