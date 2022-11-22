@@ -85,14 +85,21 @@ export default {
 </script>
 
 <style scoped>
+
+.hitokotoRoot *{
+  white-space: nowrap;
+}
+
 .hitokotoRoot {
   position: fixed;
   bottom: 100px;
-  width: 100%;
   height: 120px;
   text-align: center;
   line-height: 120px;
   transition: all 0.5s !important;
+  width: 50vw;
+  left: 50%;
+  transform: translateX(-50%);
 
   /*z-index: -1;*/
   /*background-color: green;*/
@@ -107,6 +114,7 @@ export default {
   backdrop-filter: blur(30px) !important;
   opacity: 0;
   transition: all 0.5s !important;
+  border-radius: 10px;
 }
 
 .hitokotoRoot:hover > .blurred {
@@ -117,6 +125,7 @@ export default {
   color: hsla(0, 0%, 100%, .9);
   text-shadow: 0 0 20px rgb(0 0 0 / 80%);
   animation: showText 0.5s linear;
+  white-space: nowrap;
 }
 
 .isSolidColor {
