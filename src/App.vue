@@ -17,6 +17,7 @@ export default {
   components: {RightClick, LoadingGlobal},
   data() {
     return {
+      lllllll:true,
       darkTheme: "",
       font_size: this.getFontSize(),
       font_family: this.getfontFamily(),

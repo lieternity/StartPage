@@ -1,5 +1,5 @@
 <template>
-  <div class="loadRoot">
+  <div @click="sssss=false" v-if="sssss" class="loadRoot">
     <div class="loader1">
       <div></div>
       <div></div>
@@ -11,7 +11,12 @@
 
 <script>
 export default {
-  name: "loadingGlobal"
+  name: "loadingGlobal",
+  data(){
+    return{
+      sssss:true
+    }
+  }
 }
 </script>
 
