@@ -105,7 +105,7 @@ export default {
               vsthis.$data.mainBackground.videoSrc = window.URL.createObjectURL(blob)
             }
 
-          } else if (vsthis.mainBackground.type === 'video') {
+          } else if (vsthis.mainBackground.type === 'video' && getbloburlname === "default") {
             MessageBox({
               title: '提示',
               message: '您还未上传视频，请上传视频',
