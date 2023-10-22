@@ -20,8 +20,8 @@ export default {
     return {
       darkTheme: false,
       mainBackground: {
-        localimgSrc: 'this.getImageRequest("img")',
-        videoSrc: 'this.getImageRequest()',
+        localimgSrc: 'data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=',
+        videoSrc: 'data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=',
         imgSrc: this.getImgSrc(),
         type: this.getType(),
         DB: {},
