@@ -1,6 +1,8 @@
 <template>
   <div :class="{darkTheme:darkTheme,isSolidColor:mainBackground.type === 'solidColor',mainBackground:true}">
     <img class="mainbg" v-if="mainBackground.type === 'img'" :src="mainBackground.imgSrc" alt="backgroundPicture">
+    <img class="mainbg" v-if="mainBackground.type === 'localimg'" :src="mainBackground.localimgSrc"
+         alt="backgroundPicture">
     <video class="mainbg" loop v-else-if="mainBackground.type === 'video'" :src="mainBackground.videoSrc" muted
            autoplay></video>
   </div>
@@ -18,7 +20,8 @@ export default {
     return {
       darkTheme: false,
       mainBackground: {
-        videoSrc: this.getImageRequest(),
+        localimgSrc: 'this.getImageRequest("img")',
+        videoSrc: 'this.getImageRequest()',
         imgSrc: this.getImgSrc(),
         type: this.getType(),
         DB: {},
@@ -28,7 +31,7 @@ export default {
   },
   methods: {
     getImgFile() {
-      this.$bus.$emit("loadpage",true)
+      this.$bus.$emit("loadpage", true)
       let vmthis = this
       let url = "https://raw.kgithub.com/acodegod/pic-cdn/main/2022/ikun.mp4"
       console.log(url)
@@ -57,13 +60,29 @@ export default {
     },
     putImageInDb(blob) {
       var transaction = this.mainBackground.DB.transaction(['VideoImages'], 'readwrite');
-      var put = transaction.objectStore('VideoImages').put(blob, "default");
+      var put;
+      if (blob.type === "image/png" || blob.type === "image/jpeg" || blob.type === "image/gif") {
+        put = transaction.objectStore('VideoImages').put(blob, "img");
+      } else if (blob.type === "video/mp4") {
+        // eslint-disable-next-line no-redeclare
+        put = transaction.objectStore('VideoImages').put(blob, "default");
+      } else {
+        alert("错误文件")
+      }
+
       // put.onsuccess = () => window.location.reload();
       put.onsuccess = () => {
-        setTimeout(function (){window.location.reload()},1000)
+        setTimeout(function () {
+          window.location.reload()
+        }, 1000)
       };
     },
-    getImageRequest() {
+    getImageRequest(value) {
+      let getbloburlname = "default";
+      if (value === "img") {
+        // eslint-disable-next-line no-unused-vars
+        getbloburlname = "img";
+      }
       var vsthis = this
       let indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.OIndexedDB || window.msIndexedDB,
           dbVersion = 2
@@ -77,25 +96,35 @@ export default {
           console.log(e.currentTarget.error.message)
         }
         let transaction = DB.transaction(['VideoImages'], 'readwrite')
-        transaction.objectStore('VideoImages').get("default").onsuccess = (event) => {
+        transaction.objectStore('VideoImages').get(getbloburlname).onsuccess = (event) => {
           let blob = event.target.result
           if (blob) {
-            vsthis.$data.mainBackground.videoSrc = window.URL.createObjectURL(blob)
-          } else if(vsthis.mainBackground.type === 'video'){
+            if (getbloburlname === "img") {
+              vsthis.$data.mainBackground.localimgSrc = window.URL.createObjectURL(blob)
+            } else if (getbloburlname === "default") {
+              vsthis.$data.mainBackground.videoSrc = window.URL.createObjectURL(blob)
+            }
+
+          } else if (vsthis.mainBackground.type === 'video') {
             MessageBox({
               title: '提示',
-              message: '您还未上传视频，正在下载默认视频',
+              message: '您还未上传视频，请上传视频',
               confirmButtonText: '确定',
               showClose: false,
               type: 'warning',
               callback() {
-                vsthis.getImgFile()
+                // vsthis.getImgFile()
               }
             })
           }
         }
       }
     }
+  },
+
+  beforeMount() {
+    this.getImageRequest("img");
+    this.getImageRequest();
   },
 
   beforeCreate() {

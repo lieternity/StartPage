@@ -46,9 +46,9 @@
           <el-button class="avatar-update">上传背景图</el-button>
         </el-upload>
       </div>
-      <div v-show="themeBackGround === 'video'" @click="upVideoFn" class="upVideo">
+      <div v-show="themeBackGround === 'video' || themeBackGround === 'localimg'" @click="upVideoFn" class="upVideo">
         <input ref="upInput" type="file">
-        上传视频
+        上传图片视频
       </div>
       <el-select v-model="themeBackGround" class="themeColor" placeholder="请选择">
         <el-option
@@ -110,7 +110,10 @@ export default {
         label: '在线图片'
       }, {
         value: 'video',
-        label: '视频背景'
+        label: '本地视频背景'
+      }, {
+        value: 'localimg',
+        label: '本地图片背景'
       }],
       themeColors: [{
         value: 'followTheSystem',
@@ -175,7 +178,7 @@ export default {
         const resultFile = e.target.files;
         console.log(`resultFile`, resultFile);
         if (resultFile.length) {
-          const aBlob = new Blob([resultFile[0]], {type: 'video/mp4'});
+          const aBlob = new Blob([resultFile[0]], {type: resultFile[0].type});
           console.log(aBlob)
           this.$bus.$emit("getBlob", aBlob)
         } else {
@@ -203,7 +206,7 @@ export default {
             showClose: true,
             duration: 1000,
             onClose: () => {
-              window.location.reload()
+              // window.location.reload()
             }
           })
         } else {
@@ -242,8 +245,8 @@ export default {
     loadingAnimation() {
       localStorage.setItem("loadingAnimation", this.loadingAnimation)
     },
-    wave(newValue){
-     localStorage.setItem("wave",newValue)
+    wave(newValue) {
+      localStorage.setItem("wave", newValue)
     }
 
   },
