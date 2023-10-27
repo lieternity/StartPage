@@ -56,6 +56,15 @@
     </el-collapse>
     <div class="block">
       <el-timeline class="Timeline">
+        <el-timeline-item timestamp="2023/10/27" placement="top">
+          <el-card>
+            <h4>添加将背景图片视频存放到本地功能</h4>
+            <dl>
+              <dt>功能：</dt>
+              <dd>背景图片视频存放到本地,大大加快了网站打开速度</dd>
+            </dl>
+          </el-card>
+        </el-timeline-item>
         <el-timeline-item timestamp="2022/9/3" placement="top">
           <el-card>
             <h4>添加诗词API，更换全局页面加载动画</h4>
