@@ -30,7 +30,6 @@ html {
 
 #svgContainer {
   width: 100%;
-  height: 512px;
   background-color: white;
   position: absolute;
   top: 0;
