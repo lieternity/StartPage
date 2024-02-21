@@ -1,9 +1,12 @@
 <template>
   <div :class="{darkTheme:darkTheme,isSolidColor:mainBackground.type === 'solidColor',mainBackground:true}">
-    <img class="mainbg" v-if="mainBackground.type === 'img'" :src="mainBackground.imgSrc" alt="backgroundPicture">
-    <img class="mainbg" v-if="mainBackground.type === 'localimg'" :src="mainBackground.localimgSrc"
+    <img class="mainbg"
+         v-if="mainBackground.type === 'img' || mainBackground.type === 'localimg'"
+         v-on:load="imageLoaded"
+         v-bind:style="{ opacity: imageOpacity }"
+         :src="mainBackground.type === 'img' ? mainBackground.imgSrc:mainBackground.localimgSrc"
          alt="backgroundPicture">
-    <video class="mainbg" loop v-else-if="mainBackground.type === 'video'" :src="mainBackground.videoSrc" muted
+    <video class="mainbg" loop v-if="mainBackground.type === 'video'" :src="mainBackground.videoSrc" muted
            autoplay></video>
   </div>
 </template>
@@ -18,6 +21,7 @@ export default {
   name: "backGround",
   data() {
     return {
+      imageOpacity: 0,
       darkTheme: false,
       mainBackground: {
         localimgSrc: 'data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=',
@@ -30,10 +34,13 @@ export default {
     }
   },
   methods: {
+    imageLoaded() {
+      this.imageOpacity = 1;
+    },
     getImgFile() {
       this.$bus.$emit("loadpage", true)
       let vmthis = this
-      let url = "https://ghproxy.com/https://raw.githubusercontent.com/acodegod/pic-cdn/main/2022/ikun.mp4"
+      let url = "https://gh.api.99988866.xyz/https://raw.githubusercontent.com/acodegod/pic-cdn/main/2022/ikun.mp4"
       console.log(url)
       var xhr = new XMLHttpRequest(),
           blob;
