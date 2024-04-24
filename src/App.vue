@@ -94,7 +94,7 @@ export default {
       localStorage.setItem("hitokotoClass", "hitokoto")
     }
     if (!localStorage.getItem("loadingAnimation")) {
-      localStorage.setItem("loadingAnimation", "true")
+      localStorage.setItem("loadingAnimation", "false")
     }
     if (!localStorage.getItem("wave")) {
       localStorage.setItem("wave", "false")

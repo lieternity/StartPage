@@ -1,6 +1,6 @@
 {
   "name": "homepage",
-  "version": "0.8.0",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve --mode development",
@@ -8,7 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "axios": "^0.27.2",
+    "axios": "1.6.0",
     "bowser": "^2.11.0",
     "core-js": "^3.8.3",
     "dayjs": "^1.11.3",
@@ -55,6 +55,6 @@
   "author": {
     "name": "包子",
     "url": "https://www.bugjava.cn/",
-    "upDataTime": "2022-9-3"
+    "upDataTime": "2024-4-24"
   }
 }
