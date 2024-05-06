@@ -56,6 +56,15 @@
     </el-collapse>
     <div class="block">
       <el-timeline class="Timeline">
+        <el-timeline-item timestamp="2024/5/6" placement="top">
+          <el-card>
+            <h4>新增待办功能</h4>
+            <dl>
+              <dt>功能：</dt>
+              <dd>通过首页点击时间，打开待办页面，添加您的待办事件</dd>
+            </dl>
+          </el-card>
+        </el-timeline-item>
         <el-timeline-item timestamp="2023/10/27" placement="top">
           <el-card>
             <h4>添加将背景图片视频存放到本地功能</h4>
