@@ -1,10 +1,13 @@
 <script>
 import TodoList from "@/components/home/todolist/index.vue";
-import NotesBox from "@/components/home/notes/index.vue";
+// import NotesBox from "@/components/home/notes/index.vue";
 
 export default {
   name: "tabsWrapper",
-  components: {NotesBox, TodoList},
+  components: {
+   /* NotesBox, */
+    TodoList
+  },
   data() {
     return {
       bgOpacity: 0,
