@@ -23,7 +23,9 @@ import {
     Slider,
     MessageBox,
     Message,
-    Link
+    Link,
+    Tabs,
+    TabPane,
 } from 'element-ui';
 
 Vue.use(Card)
@@ -48,6 +50,8 @@ Vue.use(Input);
 Vue.use(Popover);
 Vue.use(collapseItem);
 Vue.use(Autocomplete)
+Vue.use(Tabs)
+Vue.use(TabPane);
 
 
 Vue.prototype.$prompt = MessageBox.prompt

@@ -1,5 +1,6 @@
 <template>
-  <div :class="{darkTheme:darkTheme,isSolidColor:mainBackground.type === 'solidColor',mainBackground:true}">
+  <div :style="{scale:bgScale}"
+       :class="{darkTheme:darkTheme,isSolidColor:mainBackground.type === 'solidColor',mainBackground:true}">
     <img class="mainbg"
          v-if="mainBackground.type === 'img' || mainBackground.type === 'localimg'"
          v-on:load="imageLoaded"
@@ -30,7 +31,8 @@ export default {
         type: this.getType(),
         DB: {},
         this: this
-      }
+      },
+      bgScale: 1,
     }
   },
   methods: {
@@ -40,7 +42,7 @@ export default {
     getImgFile() {
       this.$bus.$emit("loadpage", true)
       let vmthis = this
-      let url = "https://gh.api.99988866.xyz/https://raw.githubusercontent.com/acodegod/pic-cdn/main/2022/ikun.mp4"
+      let url = "https://api.ecylt.top/v1/lanzou_link/?type=down&url=https://wwm.lanzn.com/i1h451wvwpmj"
       console.log(url)
       var xhr = new XMLHttpRequest(),
           blob;
@@ -170,6 +172,11 @@ export default {
     this.$bus.$on("getBlob", (value) => {
       this.putImageInDb(value)
     })
+    this.$bus.$on("backgroundBecomesLarger", (value) => {
+      if (typeof value === 'number') {
+        this.bgScale = value;
+      }
+    })
   }
 }
 </script>
@@ -198,4 +205,7 @@ export default {
   background-color: #FFFFFF;
 }
 
+div {
+  transition: scale .3s, transform .3s, margin-top .3s, height .3s;
+}
 </style>

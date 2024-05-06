@@ -8,6 +8,7 @@
     <button-list/>
     <hitokoto-page/>
     <app-list/>
+    <tabs-wrapper/>
   </div>
 </template>
 
@@ -20,6 +21,7 @@ import SearchMenu from "@/components/home/searchMenu";
 import buttonList from "@/components/home/buttonList";
 import HitokotoPage from "@/components/home/hitokotoPage";
 import AppList from "@/components/home/AppList";
+import TabsWrapper from "@/components/home/tabs.vue";
 
 export default {
   name: "homePage",
@@ -38,6 +40,7 @@ export default {
     }
   },
   components: {
+    TabsWrapper,
     AppList,
     HitokotoPage,
     SearchMenu,

@@ -6,7 +6,8 @@ import router from './router'
 import axios from 'axios'
 import './registerServiceWorker'
 import './elementui'
-
+import myPlugin  from './components/index';
+Vue.use(myPlugin)
 Vue.use(VueRouter)
 Vue.use(vueResource)
 

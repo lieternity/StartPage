@@ -3,18 +3,18 @@
        :class="{darkTheme:darkTheme}" style="height: 100%">
     <loading-global v-if="showLoading"></loading-global>
     <router-view></router-view>
-    <right-click/>
+<!--    <right-click/>-->
   </div>
 </template>
 
 <script>
 
 import LoadingGlobal from "@/components/home/loadingGlobal";
-import RightClick from "@/components/rightClick";
+// import RightClick from "@/components/rightClick";
 
 export default {
   name: "App",
-  components: {RightClick, LoadingGlobal},
+  components: {/*RightClick,*/ LoadingGlobal},
   data() {
     return {
       lllllll:true,
@@ -105,7 +105,7 @@ export default {
     if (!localStorage.getItem("font_style")) {
       localStorage.setItem("font_style", JSON.stringify({
         fontSize: 16,
-        fontFamily: 'PingFang'
+        fontFamily: 'Noto Sans SC'
       }))
     }
   },

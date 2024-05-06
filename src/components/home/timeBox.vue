@@ -1,5 +1,5 @@
 <template>
-  <div :class="{isSolidColor:SolidColor}" class="clock">
+  <div :class="{isSolidColor:SolidColor}" class="clock" @click="openTabs">
     <div class="hours">
       <div class="first">
         <div class="number">{{ hour[0] }}</div>
@@ -42,6 +42,10 @@ export default {
     }
   },
   methods: {
+    openTabs(){
+      this.$bus.$emit("openTabs",true);
+      this.$bus.$emit("backgroundBecomesLarger",1.2);
+    },
     time() {
       let time = dayjs().format("HHmmss");
       this.hour = (time + "").substr(0, 2);
@@ -88,9 +92,9 @@ export default {
   top: 16%;
 }
 
-.clock:hover {
+/*.clock:hover {
   animation: pulse_enter 0.5s linear;
-}
+}*/
 
 
 .clock > div {
