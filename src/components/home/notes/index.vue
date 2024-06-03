@@ -1,5 +1,6 @@
 <script>
 import {v4 as uuidv4} from 'uuid';
+import {formatTime} from "@/utils/dateUtils";
 
 export default {
   name: "NotesBox",
@@ -32,7 +33,7 @@ export default {
         this.notes = [{
           n_id: "0",
           title: '默认书签',
-          content: '这是默认便签，一个说明书签，当你新建一个你自己的便签后就会被删除',
+          content: '这是默认便签，一个说明书签，当你新建一个你自己的便签后就会被删除\n固定需要刷新才会生效',
           time: new Date().getTime() / 1000,
           isFixed: false
         }]
@@ -58,33 +59,32 @@ export default {
       }
     },
     selectednoteContent: {
-      get(value) {
-        console.log(value)
-        return this.notes[this.activenote].content;
+      get() {
+        if (this.notes[0].n_id === "0" && this.notes.length > 1) {
+          return this.notes[this.activenote + 1].content;
+        } else {
+          return this.notes[this.activenote].content;
+        }
+
       },
       set(value) {
-        // 这里可以添加逻辑来处理赋值操作
-        this.notes[this.activenote].content = value;
+        if (this.notes[0].n_id === "0" && this.notes.length > 1) {
+          this.notes[this.activenote + 1].content = value;
+        } else {
+          this.notes[this.activenote].content = value;
+        }
+
       }
     }
   },
   methods: {
+    formatTime,
     selectnote(index) {
       if (this.notes.length > index) {
         this.activenote = index;
       } else {
         this.activenote = 0;
       }
-    },
-    formatTime(timestamp) {
-      let date = new Date(timestamp * 1000); // 注意：JavaScript中的时间戳是以毫秒为单位的，而Unix时间戳通常是以秒为单位的，所以这里需要乘以1000
-      let year = date.getFullYear();
-      let month = ('0' + (date.getMonth() + 1)).slice(-2); // 月份从0开始，需要加1，然后确保两位数显示
-      let day = ('0' + date.getDate()).slice(-2); // 确保两位数显示
-      let hours = ('0' + date.getHours()).slice(-2); // 确保两位数显示
-      let minutes = ('0' + date.getMinutes()).slice(-2); // 确保两位数显示
-      let seconds = ('0' + date.getSeconds()).slice(-2); // 确保两位数显示
-      return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
     },
     delNote(id) {
       if (id === "0") {
@@ -104,6 +104,9 @@ export default {
         isFixed: false
       })
 
+    },
+    formatContent(content) {
+      return content.replace(/\n/g, '<br>');
     }
   }
 };
@@ -120,14 +123,14 @@ export default {
           :class="{ active: activenote === index }"
           class="note"
       >
-        <h4 :aria-label="note.n_id" class="note_text_title">{{ note.title }}</h4>
+        <input class="note_text_title" :aria-label="note.n_id" type="text" name="note_title" v-model="note.title">
         <span class="note_text_time">{{ formatTime(note.time) }}</span>
         <span @click.prevent="delNote(note.n_id)" class="note_icon notes-del" title="删除">
           <svg aria-hidden="true" class="icon material-icons">
             <use xlink:href="#icon-delete"></use>
           </svg>
           </span>
-        <span @click="note.isFixed = !note.isFixed" class="note_icon note-fixed" title="固定">
+        <span v-if="note.n_id !==0" @click="note.isFixed = !note.isFixed" class="note_icon note-fixed" title="固定">
           <svg aria-hidden="true" class="icon material-icons">
             <use :xlink:href="note.isFixed ? '#icon-unfixed':'#icon-tudingyangshi2'"></use>
           </svg>
@@ -163,6 +166,11 @@ export default {
 }
 
 .note_text_title {
+  background-color: transparent;
+  color: #FFFFFF;
+  display: block;
+  max-width: 100px;
+  width: 100%;
   line-height: 18px;
   font-size: 14px;
   text-overflow: ellipsis;

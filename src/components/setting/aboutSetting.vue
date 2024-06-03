@@ -56,97 +56,12 @@
     </el-collapse>
     <div class="block">
       <el-timeline class="Timeline">
-        <el-timeline-item timestamp="2024/5/6" placement="top">
+        <el-timeline-item v-for="(item, index) in line_time" :key="index" :timestamp="item.time" placement="top">
           <el-card>
-            <h4>新增待办功能</h4>
+            <h4>{{ item.title }}</h4>
             <dl>
-              <dt>功能：</dt>
-              <dd>通过首页点击时间，打开待办页面，添加您的待办事件</dd>
-            </dl>
-          </el-card>
-        </el-timeline-item>
-        <el-timeline-item timestamp="2023/10/27" placement="top">
-          <el-card>
-            <h4>添加将背景图片视频存放到本地功能</h4>
-            <dl>
-              <dt>功能：</dt>
-              <dd>背景图片视频存放到本地,大大加快了网站打开速度</dd>
-            </dl>
-          </el-card>
-        </el-timeline-item>
-        <el-timeline-item timestamp="2022/9/3" placement="top">
-          <el-card>
-            <h4>添加诗词API，更换全局页面加载动画</h4>
-            <dl>
-              <dt>功能：</dt>
-              <dd>在设置里面的一言接口选择诗词</dd>
-            </dl>
-          </el-card>
-        </el-timeline-item>
-        <el-timeline-item timestamp="2022/8/21" placement="top">
-          <el-card>
-            <h4>云同步配置</h4>
-            <dl>
-              <dt>功能：</dt>
-              <dd>登陆账号可以上传和同步配置文件</dd>
-            </dl>
-          </el-card>
-        </el-timeline-item>
-        <el-timeline-item timestamp="2022/7/3" placement="top">
-          <el-card>
-            <h4>美化右键菜单</h4>
-            <dl>
-              <dt>功能：</dt>
-              <dd>让右键菜单好看点</dd>
-            </dl>
-          </el-card>
-        </el-timeline-item>
-        <el-timeline-item timestamp="2022/7/2" placement="top">
-          <el-card>
-            <h4>新增载入页面动画</h4>
-            <dl>
-              <dt>功能：</dt>
-              <dd>在页面没有完全加载完成前，显示动画</dd>
-            </dl>
-          </el-card>
-        </el-timeline-item>
-        <el-timeline-item timestamp="2022/7/1" placement="top">
-          <el-card>
-            <h4>新增快捷导航</h4>
-            <dl>
-              <dt>功能：</dt>
-              <dd>用户可以快速进入自己常用的网站</dd>
-            </dl>
-          </el-card>
-        </el-timeline-item>
-        <el-timeline-item timestamp="2022/6/23" placement="top">
-          <el-card>
-            <h4>新增自定义字体</h4>
-            <dl>
-              <dt>功能：</dt>
-              <dd>用户可以自主切换网站的默认字体样式和大小</dd>
-            </dl>
-          </el-card>
-        </el-timeline-item>
-        <el-timeline-item timestamp="2022/6/21" placement="top">
-          <el-card>
-            <h4>网站整体完成</h4>
-            <dl>
-              <dt>功能：</dt>
-              <dd>用户设置云同步，自定义背景（本地视频，在线图片&lt;需要搭配 <a target="_blank"
-                                                                             href="https://www.baidu.com/s?word=%E5%9B%BE%E5%BA%8A">图床</a>
-                &gt;），自定义头像
-                等...
-              </dd>
-            </dl>
-          </el-card>
-        </el-timeline-item>
-        <el-timeline-item timestamp="2022/6/20" placement="top">
-          <el-card>
-            <h4>网站大体完成</h4>
-            <dl>
-              <dt>功能：</dt>
-              <dd>自以为好看</dd>
+              <dt>{{ item.p }}</dt>
+              <dd v-html="item.content"></dd>
             </dl>
           </el-card>
         </el-timeline-item>
@@ -170,7 +85,75 @@ export default {
   data() {
     return {
       isClick: true,
-      config: Config
+      config: Config,
+      line_time: [
+        {
+          "time": "2024/6/3",
+          "title": "新增便签功能",
+          "p": "说明：",
+          "content": '通过点击首页的时间，打开便签页面，就可以添加您的便签了'
+        },
+        {
+          "time": "2024/5/6",
+          "title": "新增待办功能",
+          "p": "说明：",
+          "content": '通过点击首页的时间，打开待办页面，添加您的待办事件'
+        },
+        {
+          "time": "2023/10/27",
+          "title": "添加将背景图片视频存放到本地功能",
+          "p": "说明：",
+          "content": '背景图片视频存放到本地,大大加快了网站打开速度<br>在右上角的设置，个性化，选择本地图片或视频后就可以选择上传了，后上传的会覆盖前上传的'
+        },
+        {
+          "time": "2022/9/3",
+          "title": "添加诗词API，更换全局页面加载动画",
+          "p": "说明：",
+          "content": '在设置里面的一言接口选择诗词'
+        },
+        {
+          "time": "2022/8/21",
+          "title": "云同步配置",
+          "p": "功能：",
+          "content": '登陆账号可以上传和同步配置文件'
+        },
+        {
+          "time": "2022/7/3",
+          "title": "美化右键菜单（2024-06-03已移除）",
+          "p": "功能：",
+          "content": '让右键菜单好看点'
+        },
+        {
+          "time": "2022/7/2",
+          "title": "新增载入页面动画",
+          "p": "功能：",
+          "content": '在页面没有完全加载完成前，显示动画'
+        },
+        {
+          "time": "2022/7/1",
+          "title": "新增快捷导航",
+          "p": "功能：",
+          "content": '用户可以快速进入自己常用的网站'
+        },
+        {
+          "time": "2022/6/23",
+          "title": "新增自定义字体",
+          "p": "功能：",
+          "content": '用户可以自主切换网站的默认字体样式和大小'
+        },
+        {
+          "time": "2022/6/21",
+          "title": "网站整体完成",
+          "p": "功能：",
+          "content": '用户设置云同步，自定义背景（本地视频，在线图片&lt;需要搭配 <a target="_blank" href="https://cn.bing.com/search?q=%E5%9B%BE%E5%BA%8A">图床</a>&gt;），自定义头像 等...'
+        },
+        {
+          "time": "2022/6/20",
+          "title": "网站大体完成",
+          "p": "说明：",
+          "content": '感觉还行'
+        },
+      ]
     }
   },
   methods: {

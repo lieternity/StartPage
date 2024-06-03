@@ -1,11 +1,11 @@
 <script>
 import TodoList from "@/components/home/todolist/index.vue";
-// import NotesBox from "@/components/home/notes/index.vue";
+import NotesBox from "@/components/home/notes/index.vue";
 
 export default {
   name: "tabsWrapper",
   components: {
-   /* NotesBox, */
+    NotesBox,
     TodoList
   },
   data() {
@@ -72,8 +72,8 @@ export default {
                 :key="1"
             >
               <div class="notes_box">
-                还在开发中
-<!--                <notes-box/>-->
+                <!--                还在开发中-->
+                <notes-box/>
               </div>
             </div>
             <div
@@ -158,6 +158,7 @@ export default {
   -ms-overflow-style: none; /* IE and Edge */
 
 }
+
 .tab-content::-webkit-scrollbar {
   display: none; /* Chrome, Safari, and Opera */
 }
@@ -170,22 +171,25 @@ export default {
 /* 定义过渡动画 */
 
 /* 过渡动画 */
-.slide-left-enter-active{
+.slide-left-enter-active {
   animation: menuFadeOut 0.6s forwards;
   width: 100%;
 }
-.slide-left-leave-active{
+
+.slide-left-leave-active {
   display: none;
 }
 
 
-div[mode='out-in']{
+div[mode='out-in'] {
   width: 100%;
 }
-.todo_box{
+
+.todo_box {
   display: flex;
 }
-.notes_box{
+
+.notes_box {
   height: 100%;
   display: flex;
   flex-direction: column;

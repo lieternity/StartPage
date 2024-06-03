@@ -8,7 +8,8 @@
     <button-list/>
     <hitokoto-page/>
     <app-list/>
-    <tabs-wrapper/>
+    <tabs-wrapper v-if="showtabsWrapper"></tabs-wrapper>
+    <pinned-note/>
   </div>
 </template>
 
@@ -22,12 +23,14 @@ import buttonList from "@/components/home/buttonList";
 import HitokotoPage from "@/components/home/hitokotoPage";
 import AppList from "@/components/home/AppList";
 import TabsWrapper from "@/components/home/tabs.vue";
+import PinnedNote from "@/components/home/notes/pinnedNote.vue";
 
 export default {
   name: "homePage",
   data() {
     return {
-      gradient: this.getGradient()
+      gradient: this.getGradient(),
+      showtabsWrapper:true
     }
   },
   methods: {
@@ -40,6 +43,7 @@ export default {
     }
   },
   components: {
+    PinnedNote,
     TabsWrapper,
     AppList,
     HitokotoPage,
@@ -68,7 +72,7 @@ export default {
 }
 
 .gradient {
-  //background-image: radial-gradient(transparent 0, rgba(0, 0, 0, .5) 100%), radial-gradient(transparent 33%, rgba(0, 0, 0, .3) 166%);
+  /*background-image: radial-gradient(transparent 0, rgba(0, 0, 0, .5) 100%), radial-gradient(transparent 33%, rgba(0, 0, 0, .3) 166%);*/
   background-image: radial-gradient(rgba(0,0,0,0) 0,rgba(0,0,0,.5) 100%),radial-gradient(rgba(0,0,0,0) 33%,rgba(0,0,0,.3) 166%);
 }
 
