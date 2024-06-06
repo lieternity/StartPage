@@ -19,6 +19,45 @@ export default {
         // 如果不是我们要找的项，直接返回原对象
         return item;
       });
+    },
+    replaceToTimeTags(content) {
+      return content.replace(/\[toTime\s+(\d{4}-\d{1,2}-\d{1,2}|\d{1,2}-\d{1,2})\]/g, (match, dateString) => {
+        let days = this.calculateDays(dateString);
+        return `${days}天`;
+      });
+    },
+    calculateDays(dateString) {
+      let today = this.getMidnightTimestamp(new Date());
+      let inputDate = this.getMidnightTimestamp(dateString);
+      if (/^\d{1,2}-\d{1,2}$/.test(dateString)) {
+        let currentYear = new Date().getFullYear();
+        inputDate = this.getMidnightTimestamp(`${currentYear}-${dateString}`);
+        if (inputDate < today) {
+          inputDate = this.getMidnightTimestamp(`${currentYear + 1}-${dateString}`);
+        }
+      }
+
+      console.log(inputDate, "inputDate")
+
+      let diffTime = Math.abs(today - inputDate);
+      let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      let timetext;
+      if (today - inputDate > 0) {
+        timetext = "已经"
+      } else if (today - inputDate < 0) {
+        timetext = "还有"
+      } else if (today - inputDate === 0) {
+        timetext = "就是"
+        diffDays = "今"
+      } else {
+        timetext = ""
+      }
+      return timetext + diffDays;
+    },
+    getMidnightTimestamp(date) {
+      let d = new Date(date);
+      d.setHours(0, 0, 0, 0);
+      return d;
     }
   },
   created() {
@@ -37,6 +76,12 @@ export default {
   computed: {
     filteredItems() {
       return this.notes.filter(item => item.isFixed);
+    },
+    processedContent() {
+      return function (val) {
+        return this.replaceToTimeTags(val);
+      }
+
     }
   }, watch: {
     // 监听note数组的变化
@@ -47,7 +92,7 @@ export default {
       },
       deep: true // 深度监听，因为我们要监听数组内部对象的变化
     },
-  },
+  }
 }
 </script>
 
@@ -57,7 +102,8 @@ export default {
          style="opacity: 0.8;"
          :key="item.n_id"
          :title="item.title">
-      <div class="fixedNoteContent" v-html="item.content.replace(/\n/g, '<br/>')">
+      <!--      <div class="fixedNoteContent" v-html="item.content.replace(/\n/g, '<br/>')">-->
+      <div class="fixedNoteContent" v-html="processedContent(item.content.replace(/\n/g, '<br/>'))">
       </div>
       <div class="fixedNoteTime">{{ formatTime(item.time) }}</div>
       <div class="close" @click="closefixed(item.n_id)" title="取消固定" style="opacity: 0;">
