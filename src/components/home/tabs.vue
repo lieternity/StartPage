@@ -121,7 +121,6 @@ export default {
   color: #ffffff;
   border-radius: 8px;
   transition: opacity .3s, transform .3s, margin-top .3s, height .3s;
-  z-index: 2;
   overflow: hidden;
 }
 

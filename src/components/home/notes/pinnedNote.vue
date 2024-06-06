@@ -37,8 +37,6 @@ export default {
         }
       }
 
-      console.log(inputDate, "inputDate")
-
       let diffTime = Math.abs(today - inputDate);
       let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
       let timetext;
@@ -69,9 +67,19 @@ export default {
       } catch (error) {
         console.error('Error parsing saved note:', error);
       }
-
     }
-    console.log(this.notes)
+    this.$bus.$on("changeNote", () => {
+      let SavedNote = localStorage.getItem('notes');
+      if (SavedNote) {
+        try {
+          SavedNote = JSON.parse(SavedNote);
+          this.notes = SavedNote;
+        } catch (error) {
+          console.error('Error parsing saved note:', error);
+        }
+
+      }
+    })
   },
   computed: {
     filteredItems() {
@@ -129,6 +137,7 @@ export default {
   perspective: 500px;
   overflow-y: auto;
   transition: .25s;
+  /*z-index: 1001;*/
 }
 
 .fixedNoteContainer::-webkit-scrollbar-thumb {

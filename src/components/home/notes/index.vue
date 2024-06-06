@@ -15,11 +15,14 @@ export default {
       handler(newVal) {
         // 当notes数组变化时，将其保存到localStorage
         localStorage.setItem('notes', JSON.stringify(newVal));
+        this.$bus.$emit("changeNote");
+
       },
       deep: true // 深度监听，因为我们要监听数组内部对象的变化
     },
   },
   created() {
+
     // 在组件创建时从localStorage恢复数据
     let SavedNote = localStorage.getItem('notes');
     if (SavedNote) {
