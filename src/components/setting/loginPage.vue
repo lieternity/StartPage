@@ -87,6 +87,7 @@ export default {
   },
   methods: {
     submitForm(formName) {
+      const hasOwnProperty = Object.prototype.hasOwnProperty;
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.$axios({
@@ -118,11 +119,12 @@ export default {
                   }).then((req) => {
                     if (req.data.code === 200) {
                       this.syncConfig = false;
-                      let configarr = (req.data.config).split("^");
+                      let configarr = JSON.parse(req.data.config)
                       console.log(configarr)
-                      for (let i = 0; i < configarr.length; i++) {
-                        localStorage.setItem(configarr[i], configarr[i + 1])
-                        i++
+                      for (const key in configarr) {
+                        if (hasOwnProperty.call(configarr, key)) {
+                          localStorage.setItem(key, configarr[key]);
+                        }
                       }
                       Message({
                         showClose: true,

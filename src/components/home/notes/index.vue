@@ -47,7 +47,7 @@ export default {
       this.notes = [{
         n_id: "0",
         title: '默认便签',
-        content: '这是默认便签，一个说明书签，当你新建一个你自己的便签后就会被删除\n固定需要刷新才会生效\nJOKER出生[toTime 2002-10-1]了\n' +
+        content: '这是默认便签，一个说明书签，当你新建一个你自己的便签后就会被删除\n固定需要刷新才会生效\n=======👇特殊用法👇=======\nJOKER出生[toTime 2002-10-1]了\n' +
             'JOKER下个生日[toTime 2024-10-1]\n' +
             '下一个元旦节[toTime 1-1]',
         time: new Date().getTime() / 1000,

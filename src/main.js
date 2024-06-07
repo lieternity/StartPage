@@ -6,14 +6,14 @@ import router from './router'
 import axios from 'axios'
 import './registerServiceWorker'
 import './elementui'
-import myPlugin  from './components/index';
+import myPlugin from './components/index';
+
 Vue.use(myPlugin)
 Vue.use(VueRouter)
 Vue.use(vueResource)
 
 
 Vue.config.productionTip = false
-
 new Vue({
     el: '#app', render: h => h(App),
     router: router,

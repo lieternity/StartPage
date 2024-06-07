@@ -94,6 +94,8 @@
 <script>
 import dayjs from "dayjs";
 import {Message} from "element-ui";
+import {decodeBase64ToData, encodeDataToBase64} from "@/utils/base64Utils";
+
 
 export default {
   name: "userSetting",
@@ -105,7 +107,8 @@ export default {
       deluser: false,
       syncConfig: false,
       uploadConfig: false,
-      localStorageArray: []
+      localStorageArray: [],
+      allData: {}
     }
   },
   watch: {
@@ -200,7 +203,7 @@ export default {
               if (str && str.length > 0) {
                 that.userInfo.avatar = str[0];
                 that.uploadAvatar(str[0])
-              }else{
+              } else {
                 Message({
                   showClose: true,
                   message: '上传失败',
@@ -331,11 +334,11 @@ export default {
       })
     },
     uploadConfigFn() {
-      var item;
       for (let i = 0; i < localStorage.length; i++) {
-        item = localStorage.key(i);
-        if (item === "user") continue;
-        this.localStorageArray.push([item], [localStorage.getItem(item)]);
+        for (let i = 0; i < localStorage.length; i++) {
+          let key = localStorage.key(i);
+          this.allData[key] = localStorage.getItem(key);
+        }
       }
       this.$axios({
         method: "post",
@@ -343,7 +346,7 @@ export default {
         data: {
           user: this.userInfo.uid,
           passwd: this.userInfo.passwd,
-          config: ((this.localStorageArray).join("^"))
+          config: encodeDataToBase64(this.allData)
         }
       }).then((req) => {
         if (req.data.code === 200) {
@@ -371,6 +374,7 @@ export default {
 
     },
     syncConfigFn() {
+      const hasOwnProperty = Object.prototype.hasOwnProperty;
       this.$axios({
         method: "get",
         url: process.env.VUE_APP_SERVE + "/api/syncConfig",
@@ -381,10 +385,12 @@ export default {
       }).then((req) => {
         if (req.data.code === 200) {
           this.syncConfig = false;
-          let configarr = (req.data.config).split("^");
-          for (let i = 0; i < configarr.length; i++) {
-            localStorage.setItem(configarr[i], configarr[i + 1])
-            i++
+          let configarr = decodeBase64ToData(req.data.config);
+          console.log(configarr)
+          for (const key in configarr) {
+            if (hasOwnProperty.call(configarr, key)) {
+              localStorage.setItem(key, configarr[key]);
+            }
           }
           Message({
             showClose: true,
@@ -392,7 +398,7 @@ export default {
             type: 'success',
             duration: "1000",
             onClose() {
-              window.location.reload();
+              // window.location.reload();
             }
           });
         } else if (req.data.code === 403) {
