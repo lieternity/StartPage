@@ -22,6 +22,7 @@
 
 <script>
 import {Message} from 'element-ui'
+import {decodeBase64ToData} from "@/utils/base64Utils";
 
 export default {
   name: "loginPage",
@@ -119,7 +120,7 @@ export default {
                   }).then((req) => {
                     if (req.data.code === 200) {
                       this.syncConfig = false;
-                      let configarr = JSON.parse(req.data.config)
+                      let configarr = decodeBase64ToData(req.data.config);
                       console.log(configarr)
                       for (const key in configarr) {
                         if (hasOwnProperty.call(configarr, key)) {

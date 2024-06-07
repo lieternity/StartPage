@@ -398,7 +398,7 @@ export default {
             type: 'success',
             duration: "1000",
             onClose() {
-              // window.location.reload();
+              window.location.reload();
             }
           });
         } else if (req.data.code === 403) {
