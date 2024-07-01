@@ -7,7 +7,10 @@
          v-bind:style="{ opacity: imageOpacity }"
          :src="mainBackground.type === 'img' ? mainBackground.imgSrc:mainBackground.localimgSrc"
          alt="backgroundPicture">
-    <video class="mainbg" loop v-if="mainBackground.type === 'video'" :src="mainBackground.videoSrc" muted
+    <video class="mainbg" loop
+           v-if="mainBackground.type === 'localvideo'|| mainBackground.type === 'video'"
+           :src="mainBackground.type === 'video' ? mainBackground.videoSrc:mainBackground.localvideoSrc"
+           muted
            autoplay></video>
   </div>
 </template>
@@ -26,7 +29,8 @@ export default {
       darkTheme: false,
       mainBackground: {
         localimgSrc: 'data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=',
-        videoSrc: 'data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=',
+        localvideoSrc: 'data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=',
+        videoSrc: this.getVideoSrc(),
         imgSrc: this.getImgSrc(),
         type: this.getType(),
         DB: {},
@@ -66,6 +70,9 @@ export default {
     },
     getImgSrc() {
       return localStorage.getItem("imgSrc")
+    },
+    getVideoSrc() {
+      return localStorage.getItem("videoSrc")
     },
     putImageInDb(blob) {
       var transaction = this.mainBackground.DB.transaction(['VideoImages'], 'readwrite');
@@ -111,10 +118,10 @@ export default {
             if (getbloburlname === "img") {
               vsthis.$data.mainBackground.localimgSrc = window.URL.createObjectURL(blob)
             } else if (getbloburlname === "default") {
-              vsthis.$data.mainBackground.videoSrc = window.URL.createObjectURL(blob)
+              vsthis.$data.mainBackground.localvideoSrc = window.URL.createObjectURL(blob)
             }
 
-          } else if (vsthis.mainBackground.type === 'video' && getbloburlname === "default") {
+          } else if (vsthis.mainBackground.type === 'localvideo' && getbloburlname === "default") {
             MessageBox({
               title: '提示',
               message: '您还未上传视频，请上传视频',

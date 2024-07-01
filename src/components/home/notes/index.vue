@@ -130,7 +130,8 @@ export default {
           :class="{ active: activenote === index }"
           class="note"
       >
-        <input class="note_text_title" :aria-label="note.n_id" type="text" name="note_title" v-model="note.title">
+        <input class="note_text_title" :aria-label="note.n_id" type="text" name="note_title" autocomplete="off"
+               v-model="note.title">
         <span class="note_text_time">{{ formatTime(note.time) }}</span>
         <span @click.prevent="delNote(note.n_id)" class="note_icon notes-del" title="删除">
           <svg aria-hidden="true" class="icon material-icons">

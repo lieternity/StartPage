@@ -35,6 +35,8 @@
       </el-popover>
       <el-input v-show="themeBackGround === 'img'" v-model="imgSrc" class="imgInput" @blur="setImgSrc"
                 placeholder="请输入图片的url地址"></el-input>
+      <el-input v-show="themeBackGround === 'video'" v-model="videoSrc" class="imgInput" @blur="setVideoSrc"
+                placeholder="请输入视频的url地址"></el-input>
       <div v-show="themeBackGround === 'img'" class="upImg">
         <el-upload
             action=""
@@ -46,7 +48,7 @@
           <el-button class="avatar-update">上传背景图</el-button>
         </el-upload>
       </div>
-      <div v-show="themeBackGround === 'video' || themeBackGround === 'localimg'" @click="upVideoFn" class="upVideo">
+      <div v-show="themeBackGround === 'localvideo' || themeBackGround === 'localimg'" @click="upVideoFn" class="upVideo">
         <input ref="upInput" type="file">
         上传图片视频
       </div>
@@ -110,6 +112,9 @@ export default {
         label: '在线图片'
       }, {
         value: 'video',
+        label: '在线视频'
+      }, {
+        value: 'localvideo',
         label: '本地视频背景'
       }, {
         value: 'localimg',
@@ -126,6 +131,7 @@ export default {
         label: '深色背景'
       }],
       imgSrc: this.getImgSrc(),
+      videoSrc: this.getVideoSrc(),
       themeColor: this.getThemeColor(),
       themeBackGround: this.getThemeBackGround(),
       gradient: this.getGradient()
@@ -161,8 +167,15 @@ export default {
     getImgSrc() {
       return localStorage.getItem("imgSrc")
     },
+    getVideoSrc() {
+      return localStorage.getItem("videoSrc")
+    },
     setImgSrc() {
       localStorage.setItem("imgSrc", this.imgSrc)
+      window.location.reload()
+    },
+    setVideoSrc(){
+      localStorage.setItem("videoSrc", this.videoSrc)
       window.location.reload()
     },
     getThemeColor() {

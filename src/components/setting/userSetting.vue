@@ -117,12 +117,12 @@ export default {
     }
   },
   mounted() {
-    Message({
+  /*  Message({
       showClose: true,
       message: 'Github头像图床出问题了，暂时不可以使用',
       type: 'warning',
       duration: 3000,
-    });
+    });*/
     this.upimgurl = JSON.parse(localStorage.getItem("upimgurl"))
   },
   methods: {
