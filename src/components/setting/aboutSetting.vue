@@ -88,6 +88,12 @@ export default {
       config: Config,
       line_time: [
         {
+          "time": "2024/7/2",
+          "title": "新增在线视频背景",
+          "p": "说明：",
+          "content": '可以设置视频格式的外链地址作为网站的背景，也可以使用随机视频API'
+        },
+        {
           "time": "2024/6/3",
           "title": "新增便签功能",
           "p": "说明：",

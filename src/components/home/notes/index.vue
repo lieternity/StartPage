@@ -121,7 +121,12 @@ export default {
 
 <template>
   <div class="note-container">
-    <span class="add_note" @click="addNote">add</span>
+    <span class="add_note" @click="addNote">
+      <svg font-size="20px" aria-hidden="true" class="icon material-icons">
+        <use xlink:href="#icon-add"></use>
+      </svg>
+      <span style="line-height: 10px">新便签</span>
+    </span>
     <ul class="notes">
       <li
           v-for="(note, index) in filterednotes"
@@ -276,6 +281,8 @@ textarea::-webkit-scrollbar-thumb {
   position: absolute;
   left: 10px;
   bottom: 10px;
+  color: #FFFFFF;
+  font-size: 16px;
 }
 
 
