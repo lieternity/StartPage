@@ -58,7 +58,7 @@ export default {
         {
           id: 3,
           name: "Google翻译",
-          link: "https://translate.google.cn"
+          link: "https://translate.google.com"
         },
         {
           id: 4,
@@ -67,8 +67,8 @@ export default {
         },
         {
           id: 5,
-          name: "空投快传",
-          link: "https://airportal.cn/"
+          name: "文叔叔",
+          link: "https://www.wenshushu.cn/"
         },
         {
           id: 6,
