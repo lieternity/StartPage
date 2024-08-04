@@ -37,16 +37,17 @@ export default {
   },
   mounted() {
     this.$bus.$on("changeUserMenu", (value) => {
-      if (value !== undefined){
-        this.userMenu=value
-      }else{
+      if (value !== undefined) {
+        this.userMenu = value
+      } else {
         this.userMenu = !this.userMenu
       }
     })
-    },
+  },
   methods: {
     showAppList() {
-      this.$bus.$emit("changeAppListShow")
+      this.$bus.$emit("changeAppListShow", true);
+      this.$bus.$emit("backgroundBecomesLarger",1.2);
     },
     userMenuShow($event) {
       this.left = $event.clientX
@@ -81,7 +82,7 @@ export default {
 
 }
 
-.userIcon, .setIcon,.appIcon {
+.userIcon, .setIcon, .appIcon {
   display: inline-block;
   line-height: 48px;
   text-align: center;
@@ -116,7 +117,7 @@ export default {
   animation: changeSize 0.2s forwards;
 }
 
-.userIcon:hover, .setIcon:hover,.appIcon:hover {
+.userIcon:hover, .setIcon:hover, .appIcon:hover {
   animation: changeSize 0.2s forwards;
 }
 
