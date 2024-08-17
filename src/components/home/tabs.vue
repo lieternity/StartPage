@@ -43,7 +43,7 @@ export default {
 <template>
   <div class="frosted-glass-background" @click="closeOpacity"
        :style="{opacity:bgOpacity,zIndex:bgOpacity === 0?'-10':'1000'}">
-    <div class="tab_main_box">
+    <div class="tab_main_box" :style="{scale:bgOpacity}">
       <div class="tabs">
         <div class="tab-list">
           <div
@@ -94,6 +94,9 @@ export default {
 
 <style scoped>
 .frosted-glass-background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -104,15 +107,12 @@ export default {
   backdrop-filter: blur(20px);
   color: #ffffff;
   border-radius: 8px;
-  transition: opacity .3s, transform .3s, margin-top .3s, height .3s;
+  transition: opacity .3s, transform .3s, margin-top .3s, height .3s, scale .3s;
 }
 
 .tab_main_box {
   position: absolute;
   width: 80%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   height: 64vh;
   max-width: 1200px;
   background-color: #00000030;
@@ -120,7 +120,7 @@ export default {
   backdrop-filter: blur(20px);
   color: #ffffff;
   border-radius: 8px;
-  transition: opacity .3s, transform .3s, margin-top .3s, height .3s;
+  transition: opacity .3s, transform .3s, margin-top .3s, height .3s, scale .3s;
   overflow: hidden;
 }
 
