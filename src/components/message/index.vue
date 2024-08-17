@@ -78,7 +78,7 @@ export default {
   backdrop-filter: blur(20px);
   padding: 12px 28px;
   border-radius: 25px;
-  background-color: #00000030;
+  background-color: #00000099;
   color: #ffffff;
   white-space: nowrap;
   max-width: 720px;
