@@ -1,6 +1,7 @@
 import {
     register
 } from 'register-service-worker'
+import {message} from '@/components/message'
 import {
     MessageBox
 } from 'element-ui'
@@ -16,9 +17,9 @@ if (process.env.NODE_ENV === 'production') {
         updatefound() {
             if (localStorage.getItem("firstTime") !== "true") {
                 localStorage.setItem("firstTime", "true")
-                this.$msg('success', '欢迎使用包子起始页!', 1000);
+                message('success', '欢迎使用包子起始页!', 1000);
             } else {
-                this.$msg('info', '检测到新版本，正在下载!', 1000);
+                message('info', '检测到新版本，正在下载!', 1000);
                 console.log('New content is downloading.')
             }
 
