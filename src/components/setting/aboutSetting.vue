@@ -88,6 +88,12 @@ export default {
       config: Config,
       line_time: [
         {
+          "time": "2024/8/4",
+          "title": "更新常用网站的样式",
+          "p": "说明：",
+          "content": '修改网站捷径的样式，使网页看起来更加协调'
+        },
+        {
           "time": "2024/7/2",
           "title": "新增在线视频背景",
           "p": "说明：",
