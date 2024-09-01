@@ -1,12 +1,10 @@
 <script>
 import TodoList from "@/components/home/todolist/index.vue";
 import NotesBox from "@/components/home/notes/index.vue";
-import ToolList from "@/components/home/tools/index.vue";
 
 export default {
   name: "tabsWrapper",
   components: {
-    ToolList,
     NotesBox,
     TodoList
   },
