@@ -1,10 +1,12 @@
 <script>
 import TodoList from "@/components/home/todolist/index.vue";
 import NotesBox from "@/components/home/notes/index.vue";
+import ToolList from "@/components/home/tools/index.vue";
 
 export default {
   name: "tabsWrapper",
   components: {
+    ToolList,
     NotesBox,
     TodoList
   },
@@ -82,7 +84,8 @@ export default {
                 :key="2"
             >
               <div>
-                即将完善
+                开发中
+<!--                <tool-list/>-->
               </div>
             </div>
           </transition-group>

@@ -47,7 +47,7 @@ export default {
   methods: {
     showAppList() {
       this.$bus.$emit("changeAppListShow", true);
-      this.$bus.$emit("backgroundBecomesLarger",1.2);
+      this.$bus.$emit("backgroundBecomesLarger", 1.2);
     },
     userMenuShow($event) {
       this.left = $event.clientX
@@ -90,7 +90,7 @@ export default {
   height: 40px;
   margin: 0 10px;
   border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .userMenu {
@@ -122,7 +122,7 @@ export default {
 }
 
 svg {
-  color: rgba(0, 0, 0, .5) !important;
+  color: #FFFFFF !important;
   font-size: 24px;
 }
 
