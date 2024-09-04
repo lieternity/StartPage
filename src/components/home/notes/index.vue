@@ -110,7 +110,7 @@ export default {
         time: new Date().getTime() / 1000,
         isFixed: false
       })
-
+      this.selectnote(this.filterednotes.length - 1)
     },
     formatContent(content) {
       return content.replace(/\n/g, '<br>');
@@ -166,6 +166,13 @@ export default {
 .notes {
   padding-left: 0;
   width: 200px;
+  height: calc(100% - 50px);
+  overflow-y: scroll;
+}
+
+.notes::-webkit-scrollbar {
+  width: 0; /* Safari and Chrome */
+  height: 0;
 }
 
 .note {
@@ -278,11 +285,22 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 .add_note {
-  position: absolute;
-  left: 10px;
-  bottom: 10px;
+  position: fixed;
+  /* left: 10px;*/
+  bottom: 0;
   color: #FFFFFF;
   font-size: 16px;
+  z-index: 99999999;
+  background-color: #00000012;
+  padding: 8px 0;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  width: 200px;
+
+}
+
+.add_note svg {
+  padding-left: 50px;
 }
 
 

@@ -43,7 +43,7 @@ export default {
         return this.todo;
       }
 
-      let sortedArray = [];
+      let sortedArray;
       let doneArray = this.todo.filter(function (item) {
         return item.done;
       });
