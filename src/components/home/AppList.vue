@@ -1,43 +1,62 @@
 <template>
   <div class="frosted-glass-background-applist" @click="closeOpacity2"
        :style="{opacity:bgOpacity,zIndex:bgOpacity === 0?'-10':'1000'}">
+    <!-- 右键菜单 -->
+    <div v-if="menuVisible" :style="menuStyle" class="custom-menu custom-btn">
+      <ul>
+        <li @click="sendToPhone">发送到手机</li>
+      </ul>
+    </div>
+
+    <!-- 弹出框 -->
+    <div v-if="popupVisible" class="popup">
+      <div class="popup-content">
+        <p>微信/浏览器扫一扫打开</p>
+        <img :src="popupimg" alt="二维码出错" class="qr-code">
+        <p>{{ popupname }}</p>
+        <button @click="closePopup">关闭</button>
+      </div>
+    </div>
+
     <div class="app_list_box">
       <div class="tabs">
         <div class="appList">
           <h3 v-show="otherApps.length !== 0">Customize</h3>
           <div v-show="otherApps.length !== 0" class="app_list">
-            <div v-show="otherApps.length !== 0"
+            <div @contextmenu.prevent="showMenu($event,app.name,app.link)"  v-show="otherApps.length !== 0"
                  v-for="app in otherApps"
                  class="custom-btn btn"
                  @click="jump(app.link)"
                  :key="app.id">
-              <span>{{ app.name }}</span>
+              <span :url="app.link">{{ app.name }}</span>
             </div>
           </div>
 
           <h3>个人网站</h3>
           <div class="app_list">
-            <div v-for="app in personalWebsite" class="custom-btn btn" @click="jump(app.link)" :key="app.id">
-              <span>{{ app.name }}</span>
+            <div @contextmenu.prevent="showMenu($event,app.name,app.link)" v-for="app in personalWebsite"
+                 class="custom-btn btn"
+                 @click="jump(app.link)" :key="app.id">
+              <span :url="app.link">{{ app.name }}</span>
             </div>
           </div>
           <h3>常用</h3>
           <div class="app_list">
-            <div v-for="app in commonlyUsedApps" class="custom-btn btn" @click="jump(app.link)" :key="app.id">
-              <span>{{ app.name }}</span>
+            <div @contextmenu.prevent="showMenu($event,app.name,app.link)"  v-for="app in commonlyUsedApps" class="custom-btn btn" @click="jump(app.link)" :key="app.id">
+              <span :url="app.link">{{ app.name }}</span>
             </div>
           </div>
 
           <h3>开发</h3>
           <div class="app_list">
-            <div v-for="app in devApps" class="custom-btn btn" @click="jump(app.link)" :key="app.id">
-              <span>{{ app.name }}</span>
+            <div @contextmenu.prevent="showMenu($event,app.name,app.link)"  v-for="app in devApps" class="custom-btn btn" @click="jump(app.link)" :key="app.id">
+              <span :url="app.link">{{ app.name }}</span>
             </div>
           </div>
           <h3>云开发</h3>
           <div class="app_list">
-            <div v-for="app in yunDevs" class="custom-btn btn" @click="jump(app.link)" :key="app.id">
-              <span>{{ app.name }}</span>
+            <div @contextmenu.prevent="showMenu($event,app.name,app.link)"  v-for="app in yunDevs" class="custom-btn btn" @click="jump(app.link)" :key="app.id">
+              <span :url="app.link">{{ app.name }}</span>
             </div>
           </div>
         </div>
@@ -47,6 +66,7 @@
   </div>
 </template>
 <script>
+import QRCode from 'qrcode';
 
 export default {
   name: "AppList",
@@ -54,6 +74,14 @@ export default {
     return {
       bgOpacity: 0,
       appListShow: false,
+      menuVisible: false,
+      popupVisible: false,
+      popupname: "",
+      popupimg: "",
+      menuStyle: {
+        top: '0px',
+        left: '0px'
+      },
       commonlyUsedApps: [
         {
           id: 1,
@@ -170,6 +198,42 @@ export default {
     }
   },
   methods: {
+    generateQRCode(url) {
+      // 返回一个 Promise，生成二维码并返回二维码的 Data URL
+      return QRCode.toDataURL(url)
+          .then(dataUrl => {
+            console.log(dataUrl)
+            this.popupimg = dataUrl;  // 返回生成的二维码 Data URL
+          })
+          .catch(error => {
+            console.error('生成二维码时出错:', error);
+            throw error; // 如果出错，抛出异常
+          });
+    },
+    showMenu(event, name, link) {
+      this.popupname = name
+      this.generateQRCode(link)
+      // 显示右键菜单，并根据鼠标位置设置位置
+      this.menuVisible = true;
+      this.menuStyle.top = `${event.clientY}px`;
+      this.menuStyle.left = `${event.clientX}px`;
+
+      // 监听点击事件，点击页面其他部分时关闭右键菜单
+      document.addEventListener('click', this.hideMenu);
+    },
+    hideMenu() {
+      this.menuVisible = false;
+      document.removeEventListener('click', this.hideMenu);
+    },
+    sendToPhone() {
+      // 显示发送到手机的弹出框
+      this.popupVisible = true;
+      this.hideMenu(); // 关闭右键菜单
+    },
+    closePopup() {
+      // 关闭弹出框
+      this.popupVisible = false;
+    },
     closeOpacity2(event) {
       if (event.target.classList.contains('frosted-glass-background-applist')) {
         this.bgOpacity = 0;
@@ -339,4 +403,60 @@ div[mode='out-in'] {
 h3 {
   display: none;
 }
+
+/*2024-9-29*/
+.custom-menu {
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  padding: 5px !important;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.custom-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+}
+
+.custom-menu li {
+  cursor: pointer;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  padding: 20px;
+  background-color: #00000060;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.popup-content {
+  text-align: center;
+}
+
+.qr-code {
+  width: 150px;
+  height: 150px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
 </style>
