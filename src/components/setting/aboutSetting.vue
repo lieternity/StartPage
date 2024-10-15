@@ -88,6 +88,12 @@ export default {
       config: Config,
       line_time: [
         {
+          "time": "2024/10/15",
+          "title": "修复网站出现的bug",
+          "p": "说明：",
+          "content": '1.修复网站出现的bug'
+        },
+        {
           "time": "2024/9/29",
           "title": "修复网站出现的bug|添加快捷网址生成二维码.",
           "p": "说明：",
