@@ -82,16 +82,16 @@ export default {
       localStorage.setItem("ThemeColor", "followTheSystem")
     }
     if (!localStorage.getItem("ThemeBackGround")) {
-      localStorage.setItem("ThemeBackGround", "solidColor")
+      localStorage.setItem("ThemeBackGround", "img")
     }
     if (!localStorage.getItem("imgSrc")) {
-      localStorage.setItem("imgSrc", "https://img.bugjava.cn/mv.php")
+      localStorage.setItem("imgSrc", "https://archive.biliimg.com/bfs/archive/f50cde64f88a92d5c8d82a71d755f877d7d6f7e1.jpg")
     }
     if (!localStorage.getItem("videoSrc")) {
       localStorage.setItem("videoSrc", "https://prod-streaming-video-msn-com.akamaized.net/a8c412fa-f696-4ff2-9c76-e8ed9cdffe0f/604a87fc-e7bc-463e-8d56-cde7e661d690.mp4")
     }
     if (!localStorage.getItem("gradient")) {
-      localStorage.setItem("gradient", "false")
+      localStorage.setItem("gradient", "true")
     }
     if (!localStorage.getItem("hitokotoClass")) {
       localStorage.setItem("hitokotoClass", "hitokoto")
