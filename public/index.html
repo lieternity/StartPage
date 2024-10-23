@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta name="referrer" content="never">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel=manifest href=<%= BASE_URL %>manifest.json>
+    <link rel=manifest href=<%= BASE_URL %>
+    manifest.json>
     <meta name=theme-color content=#4DBA87>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
@@ -32,14 +33,41 @@
             -khtml-user-select: none;
             user-select: none;
         }
-        baozi{
+
+        baozi {
             display: none;
         }
-        input,button,textarea{
-            outline:none;
+
+        input, button, textarea {
+            outline: none;
         }
+
         textarea:focus {
             outline: none;
+        }
+
+        /* 屏保的容器样式 */
+        #screensaverContainer {
+            display: none; /* 初始隐藏 */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.8); /* 半透明黑色背景 */
+            z-index: 9999;
+            opacity: 0; /* 初始透明 */
+            transition: opacity 0.5s ease-in-out; /* 淡入淡出动画 */
+        }
+
+        /* 屏保的 iframe 样式 */
+        #screensaver {
+            z-index: -1;
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            pointer-events: none;
         }
     </style>
 </head>
@@ -49,9 +77,61 @@
         continue.</strong>
 </noscript>
 <div id="app"></div>
+<div id="screensaverContainer" onclick="hideScreensaver()">
+    <!-- 屏保的 iframe -->
+    <iframe id="screensaver" src="clock.html"></iframe>
+</div>
 <script src="<%= BASE_URL %>static/wave.js"></script>
 <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
-<script>LA.init({id: "Jn2PS3jQz9j2NZzB",ck: "Jn2PS3jQz9j2NZzB"})</script>
+<script>LA.init({id: "Jn2PS3jQz9j2NZzB", ck: "Jn2PS3jQz9j2NZzB"})</script>
+<script>
+    let idleTime = 300000;
+    let idleTimer;
+    let screensaverVisible = false; // 标记屏保是否可见
+
+    // 重置计时器并仅当屏保不可见时才执行
+    function resetTimer() {
+        if (!screensaverVisible) {
+            clearTimeout(idleTimer); // 清除现有计时器
+            idleTimer = setTimeout(showScreensaver, idleTime); // 重新开始计时
+        }
+    }
+
+    // 显示屏保
+    function showScreensaver() {
+        screensaverVisible = true;
+        const screensaver = document.getElementById('screensaverContainer');
+        screensaver.style.display = 'block';
+        setTimeout(() => {
+            screensaver.style.opacity = '1'; // 开始淡入
+        }, 50); // 微小延迟确保display属性先被设置
+    }
+
+    // 隐藏屏保
+    function hideScreensaver() {
+        screensaverVisible = false;
+        const screensaver = document.getElementById('screensaverContainer');
+        screensaver.style.opacity = '0'; // 开始淡出
+        setTimeout(() => {
+            screensaver.style.display = 'none'; // 完全淡出后隐藏
+        }, 500); // 与淡出动画时长相同
+        resetTimer(); // 重置计时器
+    }
+
+    // 监听用户活动事件
+    function setupActivityListeners() {
+        document.onmousemove = resetTimer;   // 鼠标移动
+        document.onkeypress = resetTimer;    // 键盘按键
+        document.onscroll = resetTimer;      // 页面滚动
+        document.onclick = resetTimer;       // 页面点击
+    }
+
+    // 页面加载时设置监听器
+    window.onload = function() {
+        setupActivityListeners();
+        resetTimer(); // 页面加载时启动计时器
+    };
+</script>
 <!-- built files will be auto injected -->
 </body>
 </html>
